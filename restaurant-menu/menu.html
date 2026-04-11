@@ -21,8 +21,8 @@
             -webkit-font-smoothing: antialiased;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
-            background: linear-gradient(135deg, #01164B 0%, #4C0000 100%);
-            color: #222; 
+background: #01164B;
+color: #fff; 
             direction: rtl;
             padding: 90px 20px 20px;
             min-height: 100vh;
@@ -103,7 +103,7 @@
         }
         
         .category-card {
-            background: rgba(0,0,0,0.2);
+background: rgba(255,255,255,0.08);
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -233,7 +233,8 @@
     <header class="top-navbar">
         <div class="navbar-content">
             <div class="logo-container" onclick="window.location.href='index.html'">
-src="390c0c95-c085-4190-9d08-971acfc6a118.jpg"
+                <img src="390c0c95-c085-4190-9d08-.png" alt="ANIMA Logo" class="navbar-logo" onerror="this.src='logo.png';">
+
             </div>
             <div class="spacer"></div>
             <a href="index.html" class="menu-button">
@@ -241,8 +242,6 @@ src="390c0c95-c085-4190-9d08-971acfc6a118.jpg"
             </a>
         </div>
     </header>
-
-
 
     <div class="container">
         <div class="categories-grid" id="menu-container">
@@ -253,7 +252,7 @@ src="390c0c95-c085-4190-9d08-971acfc6a118.jpg"
     <script>
         function toggleCategory(id) {
             const list = document.getElementById(id);
-            const card = list.parentElement; // parentElement is the card itself here due to structure
+            const card = list.parentElement;
             list.classList.toggle('active');
             card.classList.toggle('active');
         }
@@ -302,8 +301,6 @@ src="390c0c95-c085-4190-9d08-971acfc6a118.jpg"
 
         window.addEventListener('load', () => {
             renderMenu();
-            
-
         });
     </script>
 </body>
