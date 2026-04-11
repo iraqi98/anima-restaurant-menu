@@ -161,7 +161,7 @@ const ANIMA_DATA = {
         { name: 'كالزونا دجاج', price: '14,000 د.ع', description: 'دجاج + فلفل + جبن + صوص الثوم', image: 'https://loremflickr.com/1200/800/calzone,chicken' },
         { name: 'كالزونا لحوم باردة', price: '13,500 د.ع', description: 'لحوم باردة + جبن + فلفل أخضر', image: 'https://loremflickr.com/1200/800/calzone,meat' },
         { name: 'كساديا دجاج', price: '11,500 د.ع', description: 'تورتيلا + دجاج + جبن + صوص salsa', image: 'https://loremflickr.com/1200/800/quesadilla,chicken' },
-        { name: 'منقوشة جبن', price: '4,000 د.ع', description: 'عجينة لبنانية + جبن أكaawi', image: 'https://loremflickr.com/1200/800/manakeesh,cheese' },
+        { name: 'منقوشة جبن', price: '4,000 د.ع', description: 'عجينة لبنانية + جبن أكاawi', image: 'https://loremflickr.com/1200/800/manakeesh,cheese' },
         { name: 'منقوشة زعتر', price: '3,000 د.ع', description: 'عجينة + زعتر + زيت زيتون', image: 'https://loremflickr.com/1200/800/manakeesh,zaatar' },
         { name: 'منقوشة لحم', price: '4,000 د.ع', description: 'لحم مفروم + بصل + طماطم + بهارات', image: 'https://loremflickr.com/1200/800/manakeesh,meat' },
         { name: 'وجبة لحم بعجين', price: '7,500 د.ع', description: 'لحم بقري + بصل + فلفل في عجينة رقيقة', image: 'https://loremflickr.com/1200/800/lahmacun' }
