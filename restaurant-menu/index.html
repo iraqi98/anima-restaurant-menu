@@ -157,7 +157,8 @@
 </head>
 <body>
     <div class="main-page">
-        <img src="390c0c95-c085-4190-9d08-.png" alt="ANIMA Logo" class="logo">
+        <img src="logo.png" alt="ANIMA Logo" class="logo">
+
 
 
         <h1>ANIMA CAFÉ & PIZZERIA</h1>
@@ -171,14 +172,21 @@
             </div>
         </div>
     </div>
-    <script src="data.js"></script>
     <script>
-        document.getElementById('eventName').textContent = ANIMA_DATA.event.name;
-        document.getElementById('eventDate').textContent = ANIMA_DATA.event.date;
+        // تحميل data.js مع fallback
+        if (typeof ANIMA_DATA === 'undefined') {
+            document.getElementById('eventName').textContent = 'ANIMA Event';
+            document.getElementById('eventDate').textContent = 'قريباً...';
+        } else {
+            document.getElementById('eventName').textContent = ANIMA_DATA.event.name;
+            document.getElementById('eventDate').textContent = ANIMA_DATA.event.date;
+        }
         
         function toggleEventDetails() {
             document.querySelector('.event-section').classList.toggle('active');
         }
     </script>
+    <script src="data.js"></script>
 </body>
 </html>
+
