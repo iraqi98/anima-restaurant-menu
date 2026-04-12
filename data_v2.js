@@ -6,7 +6,7 @@ const ANIMA_DATA = {
   categories: [
     {
       id: 'coffee-drinks',
-      title: 'COFFEE DRINKS',
+      title: 'مشاريب القهوه',
       items: [
         { name: 'Espresso', price: '4,000 د.ع', description: 'الجوهر. بدون إضافات، بدون تعقيد. اللي يعرفه يكتفي بي.', image: 'drinks/اسبريسو.jpg' },
         { name: 'Flat White', price: '5,000 د.ع', description: 'الحليب والقهوة بتوازن نادر. مو كثير، مو قليل. هيچ بالضبط.', image: 'drinks/كورتادو.jpg' },
@@ -27,7 +27,7 @@ const ANIMA_DATA = {
     },
     {
       id: 'matcha',
-      title: 'MATCHA',
+      title: 'ماتشا',
       items: [
         { name: 'Strawberry Matcha', price: '7,500 د.ع', description: 'حامض وحلو فوق بعض. مزاج غريب بس محبوب.', image: 'drinks/ماتشتا فرولة.jpg' },
         { name: 'Mango Matcha', price: '7,500 د.ع', description: 'مانجو العراق وماتشا اليابان. شي ميشبه شي بس كاعدين سوه.', image: 'drinks/ماتشا منكا.jpg' },
@@ -36,14 +36,14 @@ const ANIMA_DATA = {
     },
     {
       id: 'specialty-coffee',
-      title: 'SPECIALTY COFFEE',
+      title: 'القهوه المختصه',
       items: [
         { name: 'V60', price: '7,000 د.ع', description: 'قهوة مختصة محضرة يدوياً للحصول على نكهة نقية.', image: 'drinks/v60.jpg' }
       ]
     },
     {
       id: 'frappe',
-      title: 'FRAPPE & SMOOTHIE',
+      title: 'فرابيه',
       items: [
         { name: 'Caramel Frappe', price: '6,000 د.ع', description: 'ثلج وكراميل وقهوة. الحر ببغداد ما يستاهل أكثر من هذا.', image: 'drinks/فرابيه كرامل.jpg' },
         { name: 'Mocha Frappe', price: '6,000 د.ع', description: 'شوكولاتة مثلجة بروح قهوة. مو بس حلو، عميق هم.', image: 'drinks/فرايبيه جوكلت.jpg' },
@@ -54,7 +54,7 @@ const ANIMA_DATA = {
     },
     {
       id: 'pizza',
-      title: 'PIZZA',
+      title: 'بيتزا',
       items: [
         { name: 'Margherita', price: '12,000 د.ع', description: 'طماطم، موتزاريلا، ريحان. ثلاث مكونات تثبت إن البساطة موهبة.', image: 'food/بيتوا مارغرتا.jpg' },
         { name: 'Pepperoni', price: '14,000 د.ع', description: 'بيبروني يتحمص بالفرن. الريحة تجيك قبل الطبق.', image: 'food/بيتزا ببروني.jpg' },
@@ -66,7 +66,7 @@ const ANIMA_DATA = {
     },
     {
       id: 'fold',
-      title: 'FOLD',
+      title: 'فولد',
       items: [
         { name: 'Chicken Fold', price: '11,000 د.ع', description: 'دجاج متبّل بعجينة بيتزا ساخنة. الساندويچ اللي قرر ما يكون عادي.', image: 'food/فولد دجاج .jpg' },
         { name: 'Potatoes Fold', price: '8,000 د.ع', description: 'بطاطا داخل عجينة ساخنة. بسيط ومقنع، مثل أفضل القرارات.', image: 'food/فولد potatoes.jpg' },
@@ -77,7 +77,7 @@ const ANIMA_DATA = {
     },
     {
       id: 'salads',
-      title: 'SALADS',
+      title: 'سلطات',
       items: [
         { name: 'Pineapple Salad', price: '9,000 د.ع', description: 'أناناس وخضار وتوازن ما تتوقعه. السلطة اللي قررت تكون مختلفة.', image: 'food/سلطة انناس.jpg' },
         { name: 'Burrata Salad', price: '11,000 د.ع', description: 'جبن بوراتا طازج فوق طماطة كرزية و زيت زيتون. مقبلات مسوية روحها طبق رئيسي.', image: 'food/سلطة بوراتا .jpg' },
@@ -88,7 +88,7 @@ const ANIMA_DATA = {
     },
     {
       id: 'desserts',
-      title: 'DESSERTS',
+      title: 'حلويات',
       items: [
         { name: 'Brownies', price: '5,000 د.ع', description: 'براونيز الشوكولاتة الغنية.', image: 'drinks/براونيز .jpg' },
         { name: 'Tart', price: '6,000 د.ع', description: 'تارت الفواكه الطازجة.', image: 'drinks/ترات .jpg' },
@@ -100,7 +100,7 @@ const ANIMA_DATA = {
     },
     {
       id: 'sandwiches',
-      title: 'SANDWICHES',
+      title: 'ساندويش',
       items: []
     }
   ]
