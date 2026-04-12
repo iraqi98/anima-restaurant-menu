@@ -5,7 +5,8 @@ const ANIMA_UI = {
     eventTitle: 'Special Event',
     eventDate: 'Date Coming Soon',
     viewMenu: 'View Menu',
-    close: 'Close'
+    close: 'Close',
+    orderTip: 'Please place your order at the cashier'
   },
   ar: {
     home: 'الرئيسية',
@@ -13,7 +14,8 @@ const ANIMA_UI = {
     eventTitle: 'إيفنت مميز',
     eventDate: 'التاريخ قريباً',
     viewMenu: 'قائمة الأصناف',
-    close: 'إغلاق'
+    close: 'إغلاق',
+    orderTip: 'يرجى التوجه للكاشير لتثبيت طلبك'
   }
 };
 
@@ -38,7 +40,7 @@ const ANIMA_DATA = {
         { name: 'Caramel Latte', price: '6,000 IQD', description: 'كراميل، حليب، قهوة. الصبح اللي يستاهل تقوم علموده.', image: 'drinks/caramel-latte.jpg' },
         { name: 'Hot Chocolate', price: '5,500 IQD', description: 'مو قهوة، بس هم يدفي.', image: 'drinks/iced-mocha.jpg' },
         { name: 'Iraqi Tea', price: '1,500 IQD', description: 'مو اوفر بس يحتاج يكون بكل مكان.', image: 'drinks/hibiscus.jpg' },
-        { name: 'Mocha Latte', price: '6,000 IQD', description: 'ما تقدر تختار بين القهوة والشوكولاتة؟ — ما تحتاج.', image: 'drinks/iced-mocha.jpg' },
+        { name: 'Mocha Latte', price: '6,000 IQD', description: 'ما تقدر تختار بين القهوة والشوكولاتة? — ما تحتاج.', image: 'drinks/iced-mocha.jpg' },
         { name: 'Turkish Coffee', price: '4,000 IQD', description: 'مو بس تنشرب، تنقري هم.', image: 'drinks/espresso.jpg' },
         { name: 'Hibiscus Iced Tea', price: '6,000 IQD', description: 'شاي كركديه بارد على ثلج. اللون أحمر، الطعم حامض، المزاج صح.', image: 'drinks/hibiscus.jpg' },
         { name: 'Peach Iced Tea', price: '6,000 IQD', description: 'خوخ وشاي وثلج. يخبل مثل يوم ما عندك شغل بي.', image: 'drinks/peach-iced-tea.jpg' }
