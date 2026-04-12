@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة الأصناف - ANIMA Event</title>
+    <title>Menu - ANIMA Event</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,6 @@
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
 background: #01164B; color: #fff;
-color: #fff; 
 body::before {
   content: '';
   position: fixed;
@@ -32,7 +31,7 @@ body::before {
   background: radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120,219,255,0.3) 0%, transparent 50%);
   z-index: -1;
 }
-            direction: rtl;
+            direction: ltr;
             padding: 90px 20px 20px;
             min-height: 100vh;
         }
@@ -100,9 +99,6 @@ body::before {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-
-
-
         
         .categories-grid {
             display: grid;
@@ -111,21 +107,20 @@ body::before {
             margin-top: 20px;
         }
         
-.category-card {
-background: rgba(1,22,75,0.8);
-border: 1px solid rgba(255,255,255,0.1);
+        .category-card {
+            background: rgba(1,22,75,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
         .category-card.full-width { grid-column: span 2; }
         .category-card.half-width { grid-column: span 1; }
-.category-card.active {
+        .category-card.active {
             grid-column: span 2 !important;
             background: rgba(1,22,75,0.9);
             color: #ffffff;
@@ -176,24 +171,17 @@ border: 1px solid rgba(255,255,255,0.1);
             max-height: 6000px;
         }
         
-        .subcategory {
-            margin: 0;
-        }
-        
         .menu-item {
             display: flex;
             flex-direction: column;
             gap: 12px;
             padding: 24px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s ease;
+            text-align: right; /* Maintain right-alignment for Arabic content */
         }
         .menu-item:hover {
             background: rgba(255,255,255,0.06);
-            padding-left: 28px;
-            padding-right: 28px;
         }
-        .menu-item:last-child { border-bottom: none; }
         .item-image-container {
             width: 100%;
             height: 280px;
@@ -201,11 +189,7 @@ border: 1px solid rgba(255,255,255,0.1);
             overflow: hidden;
             background: rgba(255,255,255,0.08);
             box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
             border: 2px solid rgba(255,255,255,0.1);
-        }
-        .menu-item:hover .item-image-container {
-            transform: scale(1.02);
         }
         .item-thumb {
             width: 100%;
@@ -214,17 +198,21 @@ border: 1px solid rgba(255,255,255,0.1);
         }
         .item-details {
             display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .item-header {
+            display: flex;
             justify-content: space-between;
             align-items: baseline;
             gap: 16px;
+            direction: rtl; /* Right-to-left for Arabic names/prices */
         }
-.item-name { 
+        .item-name { 
             font-size: 22px;
             font-weight: 600;
             color: #ffffff;
-            flex: 1;
             margin: 0;
-            line-height: 1.3;
         }
         .item-price { 
             font-size: 20px;
@@ -234,11 +222,7 @@ border: 1px solid rgba(255,255,255,0.1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            padding: 8px 20px;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(244,208,63,0.3);
             white-space: nowrap;
-            margin-top: 8px;
         }
         .item-description {
             color: rgba(255,255,255,0.85);
@@ -246,9 +230,9 @@ border: 1px solid rgba(255,255,255,0.1);
             line-height: 1.5;
             margin: 8px 0;
             font-family: 'Cairo', sans-serif;
+            direction: rtl;
         }
         
-        /* Responsive Improvements for Mobile */
         @media (max-width: 480px) {
             body { padding: 80px 10px 10px; }
             .top-navbar { height: 60px; padding: 0 15px; }
@@ -256,15 +240,7 @@ border: 1px solid rgba(255,255,255,0.1);
             .categories-grid { gap: 10px; grid-template-columns: 1fr !important; }
             .menu-button { padding: 6px 14px; font-size: 0.9em; }
             .category-title { font-size: 1.2em; }
-            .menu-item { padding: 20px 16px; }
-            .item-name { font-size: 20px; }
-            .item-price { font-size: 18px; padding: 6px 16px; }
             .item-image-container { height: 200px; }
-            .category-card-banner { height: 80px; padding: 10px; }
-            .category-card.full-width, .category-card.active { grid-column: 1 / -1 !important; }
-        }
-        @media (min-width: 481px) {
-            .category-title { font-size: 1.5em; }
         }
     </style>
 </head>
@@ -273,21 +249,17 @@ border: 1px solid rgba(255,255,255,0.1);
         <div class="navbar-content">
             <div class="logo-container" onclick="window.location.href='index.html'">
                 <img src="anima_logo.png" alt="ANIMA Logo" class="navbar-logo">
-
-
-
-
             </div>
             <div class="spacer"></div>
             <a href="index.html" class="menu-button">
-                الرئيسية
+                Home
             </a>
         </div>
     </header>
 
     <div class="container">
         <div class="categories-grid" id="menu-container">
-            <!-- سيتم توليد الأقسام هنا ديناميكياً من ملف data.js -->
+            <!-- Loading message in English -->
         </div>
     </div>
 
@@ -304,7 +276,7 @@ border: 1px solid rgba(255,255,255,0.1);
             container.innerHTML = '';
             
             if (typeof ANIMA_DATA === 'undefined' || !ANIMA_DATA.categories) {
-                container.innerHTML = '<p style="text-align:center;color:white;">جاري تحميل القائمة...</p>';
+                container.innerHTML = '<p style="text-align:center;color:white;">Loading Menu...</p>';
                 return;
             }
 
@@ -312,16 +284,18 @@ border: 1px solid rgba(255,255,255,0.1);
                 let itemsHtml = '';
                 category.items.forEach(item => {
                     const itemImage = item.image ? `<img src="${item.image}" class="item-thumb" loading="lazy" alt="${item.name}">` : '';
-                    const desc = item.description || 'وصف لذيذ للصنف';
+                    const desc = item.description || '';
                     itemsHtml += `
                         <div class="menu-item">
                             <div class="item-image-container">
                                 ${itemImage}
                             </div>
                             <div class="item-details">
-                                <h3 class="item-name">${item.name}</h3>
+                                <div class="item-header">
+                                    <h3 class="item-name">${item.name}</h3>
+                                    <div class="item-price">${item.price}</div>
+                                </div>
                                 <p class="item-description">${desc}</p>
-                                <div class="item-price">${item.price}</div>
                             </div>
                         </div>
                     `;
