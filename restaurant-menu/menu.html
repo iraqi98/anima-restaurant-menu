@@ -19,9 +19,8 @@
             overflow-x: hidden;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
-            padding: 90px 15px 40px; /* Enhanced bottom padding */
+            padding: 95px 15px 40px;
             min-height: 100vh;
-            transition: background 0.5s ease;
         }
 
         body::before {
@@ -54,15 +53,11 @@
             margin: 0 auto;
         }
 
-        .navbar-logo { height: 45px; object-fit: contain; cursor: pointer; transition: transform 0.3s; }
-        .navbar-logo:active { transform: scale(0.9); }
+        .navbar-logo { height: 45px; object-fit: contain; cursor: pointer; }
 
         .spacer { flex-grow: 1; }
 
-        .nav-buttons {
-            display: flex;
-            gap: 12px;
-        }
+        .nav-buttons { display: flex; gap: 12px; }
 
         .menu-button {
             color: #ffffff;
@@ -77,13 +72,6 @@
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .menu-button:active {
-            background: rgba(255,255,255,0.2);
-            transform: scale(0.95);
         }
 
         .categories-grid {
@@ -103,18 +91,15 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            scroll-margin-top: 100px; /* Fix for sticky header */
+            scroll-margin-top: 100px;
         }
 
         .category-card.full-width { grid-column: span 2; }
         
-        .category-card:active { transform: scale(0.98); }
-
         .category-card.active {
             grid-column: span 2 !important;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255,255,255,0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .category-card-banner {
@@ -135,17 +120,40 @@
             text-transform: uppercase;
         }
 
-        .category-card.full-width .category-title { font-size: 1.6rem; }
-        
         .subcategory-list {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         .subcategory-list.active { max-height: 10000px; }
         
+        /* New Close Header Styling */
+        .close-header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 25px 5px;
+        }
+        [dir="rtl"] .close-header { justify-content: flex-start; }
+
+        .icon-close-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .icon-close-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
+
         .menu-item {
             padding: 25px 20px;
             border-top: 1px solid rgba(255,255,255,0.08);
@@ -166,11 +174,11 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
-            direction: rtl !important; /* Always RTL for Arabic data items */
+            direction: rtl !important;
         }
 
         .item-name { font-size: 1.4rem; color: #fff; font-weight: 700; margin: 0; }
-        .item-price { font-size: 1.2rem; font-weight: 800; color: #ffbc00; white-space: nowrap; }
+        .item-price { font-size: 1.2rem; font-weight: 800; color: #ffbc00; }
         .item-description {
             font-family: 'Cairo', sans-serif;
             font-size: 1rem;
@@ -199,17 +207,11 @@
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .close-btn:hover { background: rgba(255,255,255,0.2); }
-
         @media (max-width: 480px) {
-            .categories-grid { gap: 12px; }
             .category-title { font-size: 1.1rem; }
-            .category-card.full-width .category-title { font-size: 1.3rem; }
             .item-image-container { height: 210px; }
-            .top-navbar { height: 70px; }
         }
     </style>
 </head>
@@ -232,7 +234,6 @@
     </div>
 
     <script>
-        // Use localStorage to persist language preference
         let currentLang = localStorage.getItem('anima_lang') || 'en';
 
         function toggleLanguage() {
@@ -245,33 +246,27 @@
             const isAr = (currentLang === 'ar');
             document.documentElement.lang = currentLang;
             document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            
             document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
             if(typeof ANIMA_UI !== 'undefined') {
                 document.getElementById('home-link').textContent = ANIMA_UI[currentLang].home;
             }
-
             renderMenu();
         }
 
         function toggleCategory(id) {
             const list = document.getElementById(id);
             const card = list.parentElement;
-            
             if(list.classList.contains('active')) {
                 list.classList.remove('active');
                 card.classList.remove('active');
                 return;
             }
-
             document.querySelectorAll('.subcategory-list.active').forEach(item => {
                 item.classList.remove('active');
                 item.parentElement.classList.remove('active');
             });
-
             list.classList.add('active');
             card.classList.add('active');
-            
             setTimeout(() => {
                 card.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 350);
@@ -289,7 +284,6 @@
         function renderMenu() {
             const container = document.getElementById('menu-container');
             container.innerHTML = '';
-            
             if (typeof ANIMA_DATA === 'undefined') return;
 
             ANIMA_DATA.categories.forEach((category, index) => {
@@ -315,6 +309,9 @@
                             <div class="category-title">${title}</div>
                         </div>
                         <div class="subcategory-list" id="${category.id}" onclick="event.stopPropagation()">
+                            <div class="close-header">
+                                <button class="icon-close-btn" onclick="closeCategory(event, '${category.id}')">×</button>
+                            </div>
                             ${itemsHtml}
                             <div class="close-section">
                                 <button class="close-btn" onclick="closeCategory(event, '${category.id}')">${closeText}</button>
@@ -324,7 +321,6 @@
                 `;
             });
         }
-        
         window.onload = () => updateUI();
     </script>
 </body>
