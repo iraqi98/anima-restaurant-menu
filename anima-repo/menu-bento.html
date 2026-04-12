@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة ANIMA - Bento Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="data-complete.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Roboto', 'Cairo', sans-serif; 
+            background: #01164B; 
+            color: #fff; 
+            direction: rtl;
+            padding: 80px 20px 20px;
+            line-height: 1.6;
+        }
+        .navbar { 
+            position: fixed; top: 0; width: 100%; height: 70px; 
+            background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
+            display: flex; align-items: center; padding: 0 20px; z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-content { max-width: 1400px; margin: 0 auto; width: 100%; display: flex; align-items: center; }
+        .logo { height: 45px; cursor: pointer; }
+        .spacer { flex: 1; }
+        .home-btn { 
+            color: #fff; text-decoration: none; padding: 12px 24px; 
+            background: rgba(255,255,255,0.15); border-radius: 30px; 
+            border: 1px solid rgba(255,255,255,0.3); font-weight: 600;
+            transition: all 0.3s; 
+        }
+        .home-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 30px auto 0;
+            height: 100vh; /* Fixed height for bento effect */
+        }
+        .bento-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .bento-card h3 {
+            font-size: 1.4em; font-weight: 700; margin: 0 0 12px 0;
+            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .bento-item {
+            display: flex; gap: 12px; align-items: center; padding: 12px;
+            background: rgba(255,255,255,0.05); border-radius: 16px;
+            transition: all 0.3s;
+        }
+        .bento-item:hover { background: rgba(255,255,255,0.12); transform: scale(1.02); }
+        .item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+        .item-info h4 { font-size: 1.1em; font-weight: 600; margin: 0 0 2px 0; }
+        .item-price { 
+            font-weight: 700; color: #f4d03f; 
+            background: rgba(244,208,63,0.2); padding: 4px 12px; 
+            border-radius: 20px; font-size: 1em;
+        }
+        
+        /* Bento Sizes */
+        .size-1x1 { grid-column: span 1; grid-row: span 1; }
+        .size-1x2 { grid-column: span 1; grid-row: span 2; }
+        .size-2x1 { grid-column: span 2; grid-row: span 1; }
+        .size-2x2 { grid-column: span 2; grid-row: span 2; }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .size-2x2 { grid-column: span 2; grid-row: span 1; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; gap: 16px; }
+            .bento-card { padding: 20px; }
+            .item-img { width: 50px; height: 50px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <img src="logo.png" alt="ANIMA" class="logo" onclick="location.href='index.html'">
+            <div class="spacer"></div>
+            <a href="index.html" class="home-btn">الرئيسية</a>
+        </div>
+    </nav>
+
+    <div class="bento-grid" id="bentoContainer"></div>
+
+    <script>
+        function renderBento() {
+            const container = document.getElementById('bentoContainer');
+            if (!ANIMA_DATA?.categories) {
+                container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">جاري تحميل...</div>';
+                return;
+            }
+            
+            const sizes = ['size-2x2', 'size-1x2', 'size-2x1', 'size-1x1', 'size-1x1', 'size-1x2', 'size-2x1'];
+            let html = '';
+            
+            ANIMA_DATA.categories.slice(0, 7).forEach((cat, i) => { // Show first 7 for demo
+                const items = cat.items.slice(0, 4).map(item => `
+                    <div class="bento-item">
+                        <img src="${item.image}" alt="${item.name}" class="item-img" loading="lazy">
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <div class="item-price">${item.price}</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                html += `
+                    <div class="bento-card ${sizes[i]}">
+                        <h3>${cat.title}</h3>
+                        ${items}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+        
+        window.addEventListener('load', renderBento);
+    </script>
+</body>
+</html>
+

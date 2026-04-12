@@ -1,4 +1,105 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIMA CAFÉ & PIZZERIA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        body { 
+            font-family: 'Roboto', 'Cairo', sans-serif; 
+            background: #01164B;
+            color: #fff; 
+            line-height: 1.5;
+            direction: rtl;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        
+        .main-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .logo {
+            max-width: 220px;
+            max-height: 150px;
+            width: auto;
+            height: auto;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+            opacity: 0;
+            animation: fadeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        
+        h1 { 
+            font-size: clamp(2em, 8vw, 3em); 
+            font-family: 'Roboto', 'Cairo', sans-serif;
+            font-weight: 700; 
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+        }
+        
+        .menu-btn {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            text-decoration: none;
+            display: inline-block;
+            width: 90%;
+            max-width: 400px;
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+            margin-bottom: 15px;
+        }
+        
+        .menu-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-page">
+        <img src="restaurant-menu/logo.png" alt="ANIMA Logo" class="logo">
+        <h1>ANIMA CAFÉ & PIZZERIA</h1>
+        <a href="restaurant-menu/menu.html" class="menu-btn">قائمة الأصناف</a>
+    </div>
+</body>
+</html>

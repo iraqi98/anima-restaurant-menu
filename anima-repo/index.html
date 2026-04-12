@@ -20,17 +20,17 @@
 <body>
     <img src="logo.png" alt="ANIMA Logo" class="logo">
     <a href="menu.html" class="menu-btn">قائمة الأصناف</a>
-    <div class="event-section" id="event" style="display: none;">
+    <div class="event-section" id="event">
         <div class="event-title" id="eventName">إيفنت مميز</div>
         <div class="event-date" id="eventDate">التاريخ قريباً</div>
     </div>
-    <script src="data.js"></script>
     <script>
         if (typeof ANIMA_DATA !== 'undefined') {
             document.getElementById('eventName').textContent = ANIMA_DATA.event.name;
             document.getElementById('eventDate').textContent = ANIMA_DATA.event.date;
         }
     </script>
+    <script src="data.js"></script>
 </body>
 </html>
 

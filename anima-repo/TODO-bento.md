@@ -19,6 +19,7 @@
 - اختبار http://localhost:3000/menu-new.html
 - npx serve restaurant-menu
 
-هل توافق؟
+[x] منجز - menu-bento.html تم إنشاؤه واختباره.
+
 
 
