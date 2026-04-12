@@ -19,30 +19,23 @@
             overflow-x: hidden;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
-            direction: ltr;
             padding: 90px 15px 20px;
             min-height: 100vh;
+            transition: all 0.3s ease;
         }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.2) 0%, transparent 50%), 
-                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.2) 0%, transparent 50%);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120,119,198,0.2) 0%, transparent 50%), 
+                        radial-gradient(circle at 80% 20%, rgba(255,119,198,0.2) 0%, transparent 50%);
             z-index: -1;
         }
 
         .top-navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
+            top: 0; left: 0; width: 100%; height: 70px;
             background: rgba(1, 22, 75, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -61,12 +54,14 @@
             margin: 0 auto;
         }
 
-        .navbar-logo {
-            height: 40px;
-            object-fit: contain;
-        }
+        .navbar-logo { height: 40px; object-fit: contain; }
 
         .spacer { flex-grow: 1; }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
 
         .menu-button {
             color: #ffffff;
@@ -74,13 +69,20 @@
             font-size: 0.9em;
             font-weight: 700;
             background: rgba(255,255,255,0.1);
-            padding: 8px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
+        .menu-button:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -101,25 +103,14 @@
             position: relative;
         }
 
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
         .category-card.full-width { grid-column: span 2; }
         
-        .category-card:active {
-            transform: scale(0.96);
-            background: rgba(255, 255, 255, 0.08);
-        }
+        .category-card:active { transform: scale(0.96); }
 
         .category-card.active {
             grid-column: span 2 !important;
             background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255,255,255,0.3);
         }
 
         .category-card-banner {
@@ -128,32 +119,26 @@
             align-items: center;
             justify-content: center;
             padding: 10px;
-            position: relative;
         }
         
         .category-title {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', 'Cairo', sans-serif;
             font-size: 1.2rem;
             font-weight: 800;
             color: #ffffff;
             text-align: center;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .category-card.full-width .category-title {
-            font-size: 1.5rem;
-        }
+        .category-card.full-width .category-title { font-size: 1.5rem; }
         
         .subcategory-list {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.6s ease-in-out;
         }
-        .subcategory-list.active {
-            max-height: 5000px;
-        }
+        .subcategory-list.active { max-height: 5000px; }
         
         .menu-item {
             padding: 20px;
@@ -162,10 +147,8 @@
         }
 
         .item-image-container {
-            width: 100%;
-            height: 220px;
-            border-radius: 18px;
-            overflow: hidden;
+            width: 100%; height: 220px;
+            border-radius: 18px; overflow: hidden;
             margin-bottom: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
@@ -176,26 +159,26 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
-            direction: rtl;
         }
+        /* Language dependent alignment */
+        [dir="rtl"] .item-header { direction: rtl; }
+        [dir="ltr"] .item-header { direction: ltr; }
+
         .item-name { font-size: 1.3rem; color: #fff; font-weight: 700; }
-        .item-price { 
-            font-size: 1.1rem; 
-            font-weight: 800; 
-            color: #f39c12; 
-        }
+        .item-price { font-size: 1.1rem; font-weight: 800; color: #f39c12; }
         .item-description {
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
             color: rgba(255,255,255,0.7);
             line-height: 1.5;
-            direction: rtl;
-            text-align: right;
         }
+        [dir="rtl"] .item-description { text-align: right; direction: rtl; }
+        [dir="ltr"] .item-description { text-align: left; direction: ltr; }
 
-        @media (min-width: 600px) {
-            .categories-grid { gap: 20px; }
-            .body { padding: 100px 40px 40px; }
+        @media (max-width: 480px) {
+            .categories-grid { gap: 10px; }
+            .category-title { font-size: 1rem; }
+            .category-card.full-width .category-title { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -206,7 +189,10 @@
                 <img src="anima_logo.png" alt="ANIMA Logo" class="navbar-logo">
             </div>
             <div class="spacer"></div>
-            <a href="index.html" class="menu-button">Home</a>
+            <div class="nav-buttons">
+                <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
+                <a href="index.html" id="home-link" class="menu-button">Home</a>
+            </div>
         </div>
     </header>
 
@@ -215,11 +201,29 @@
     </div>
 
     <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'ar' : 'en';
+            updateUI();
+        }
+
+        function updateUI() {
+            const isAr = (currentLang === 'ar');
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+            
+            // Update Buttons
+            document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
+            document.getElementById('home-link').textContent = ANIMA_UI[currentLang].home;
+
+            renderMenu();
+        }
+
         function toggleCategory(id) {
             const list = document.getElementById(id);
             const card = list.parentElement;
             
-            // Close other active categories
             document.querySelectorAll('.subcategory-list.active').forEach(item => {
                 if(item.id !== id) {
                     item.classList.remove('active');
@@ -239,7 +243,12 @@
 
         function renderMenu() {
             const container = document.getElementById('menu-container');
-            if (typeof ANIMA_DATA === 'undefined') return;
+            container.innerHTML = '';
+            
+            if (typeof ANIMA_DATA === 'undefined') {
+                container.innerHTML = `<p style="text-align:center;color:white;">${ANIMA_UI[currentLang].loading}</p>`;
+                return;
+            }
 
             ANIMA_DATA.categories.forEach((category, index) => {
                 const itemsHtml = category.items.map(item => `
@@ -253,14 +262,14 @@
                     </div>
                 `).join('');
                 
-                // Pattern: 1 Full, 2 Half, 1 Full, 2 Half...
                 const isFull = (index % 3 === 0);
                 const cardClass = isFull ? 'full-width' : 'half-width';
+                const title = category.title[currentLang];
 
                 container.innerHTML += `
                     <div class="category-card ${cardClass}" onclick="toggleCategory('${category.id}')">
                         <div class="category-card-banner">
-                            <div class="category-title">${category.title}</div>
+                            <div class="category-title">${title}</div>
                         </div>
                         <div class="subcategory-list" id="${category.id}" onclick="event.stopPropagation()">
                             ${itemsHtml}
@@ -269,7 +278,8 @@
                 `;
             });
         }
-        renderMenu();
+        
+        window.onload = () => updateUI();
     </script>
 </body>
 </html>
