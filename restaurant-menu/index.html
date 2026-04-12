@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIMA CAFÉ & PIZZERIA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        @keyframes fadeIn { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+        body { font-family: 'Roboto', 'Cairo', sans-serif; background: #01164B; color: #fff; line-height: 1.6; direction: rtl; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+        .logo { max-width: 250px; max-height: 180px; width: auto; height: auto; border-radius: 25px; margin-bottom: 30px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); animation: fadeIn 1.2s ease-out; }
+        .menu-btn { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.3); color: #fff; padding: 20px 50px; border-radius: 60px; font-size: 1.6em; font-weight: 700; cursor: pointer; box-shadow: 0 15px 40px rgba(0,0,0,0.4); transition: all 0.4s ease; text-decoration: none; display: inline-block; margin-bottom: 25px; position: relative; overflow: hidden; }
+        .menu-btn:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: rgba(255,255,255,0.15); }
+        .event-section { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.2); border-radius: 30px; padding: 25px 40px; max-width: 450px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: fadeIn 1s ease-out 0.5s both; }
+        .event-title { font-size: 1.5em; font-weight: 700; margin-bottom: 10px; }
+        .event-date { font-size: 1.2em; opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <img src="anima_logo.png" alt="ANIMA Logo" class="logo">
+    <a href="menu.html" class="menu-btn">قائمة الأصناف</a>
+    <div class="event-section" id="event" style="display: none;">
+        <div class="event-title" id="eventName">إيفنت مميز</div>
+        <div class="event-date" id="eventDate">التاريخ قريباً</div>
+    </div>
+    <script src="data_v2.js"></script>
+    <script>
+        if (typeof ANIMA_DATA !== 'undefined') {
+            document.getElementById('eventName').textContent = ANIMA_DATA.event.name;
+            document.getElementById('eventDate').textContent = ANIMA_DATA.event.date;
+        }
+    </script>
+</body>
+</html>
+
