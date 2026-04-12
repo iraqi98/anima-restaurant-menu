@@ -4,14 +4,16 @@ const ANIMA_UI = {
     loading: 'Loading Menu...',
     eventTitle: 'Special Event',
     eventDate: 'Date Coming Soon',
-    viewMenu: 'View Menu'
+    viewMenu: 'View Menu',
+    close: 'Close'
   },
   ar: {
     home: 'الرئيسية',
     loading: 'جاري التحميل...',
     eventTitle: 'إيفنت مميز',
     eventDate: 'التاريخ قريباً',
-    viewMenu: 'قائمة الأصناف'
+    viewMenu: 'قائمة الأصناف',
+    close: 'إغلاق'
   }
 };
 

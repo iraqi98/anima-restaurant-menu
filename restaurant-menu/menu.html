@@ -137,8 +137,10 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.6s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
-        .subcategory-list.active { max-height: 5000px; }
+        .subcategory-list.active { max-height: 8000px; }
         
         .menu-item {
             padding: 20px;
@@ -160,7 +162,6 @@
             align-items: center;
             margin-bottom: 8px;
         }
-        /* Language dependent alignment */
         [dir="rtl"] .item-header { direction: rtl; }
         [dir="ltr"] .item-header { direction: ltr; }
 
@@ -174,6 +175,33 @@
         }
         [dir="rtl"] .item-description { text-align: right; direction: rtl; }
         [dir="ltr"] .item-description { text-align: left; direction: ltr; }
+
+        .close-section {
+            padding: 25px;
+            display: flex;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .close-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
 
         @media (max-width: 480px) {
             .categories-grid { gap: 10px; }
@@ -213,7 +241,6 @@
             document.documentElement.lang = currentLang;
             document.documentElement.dir = isAr ? 'rtl' : 'ltr';
             
-            // Update Buttons
             document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
             document.getElementById('home-link').textContent = ANIMA_UI[currentLang].home;
 
@@ -224,21 +251,32 @@
             const list = document.getElementById(id);
             const card = list.parentElement;
             
+            if(list.classList.contains('active')) {
+                list.classList.remove('active');
+                card.classList.remove('active');
+                return;
+            }
+
             document.querySelectorAll('.subcategory-list.active').forEach(item => {
-                if(item.id !== id) {
-                    item.classList.remove('active');
-                    item.parentElement.classList.remove('active');
-                }
+                item.classList.remove('active');
+                item.parentElement.classList.remove('active');
             });
 
-            list.classList.toggle('active');
-            card.classList.toggle('active');
+            list.classList.add('active');
+            card.classList.add('active');
             
-            if(card.classList.contains('active')) {
-                setTimeout(() => {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            }
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
+
+        function closeCategory(e, id) {
+            e.stopPropagation();
+            const list = document.getElementById(id);
+            const card = list.parentElement;
+            list.classList.remove('active');
+            card.classList.remove('active');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         function renderMenu() {
@@ -265,6 +303,7 @@
                 const isFull = (index % 3 === 0);
                 const cardClass = isFull ? 'full-width' : 'half-width';
                 const title = category.title[currentLang];
+                const closeText = ANIMA_UI[currentLang].close;
 
                 container.innerHTML += `
                     <div class="category-card ${cardClass}" onclick="toggleCategory('${category.id}')">
@@ -273,6 +312,9 @@
                         </div>
                         <div class="subcategory-list" id="${category.id}" onclick="event.stopPropagation()">
                             ${itemsHtml}
+                            <div class="close-section">
+                                <button class="close-btn" onclick="closeCategory(event, '${category.id}')">${closeText}</button>
+                            </div>
                         </div>
                     </div>
                 `;
