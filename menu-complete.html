@@ -316,8 +316,8 @@
     </div>
 
     <script>
-        let currentLang = localStorage.getItem('anima_lang') || 'en';
-        const dir = localStorage.getItem('anima_lang') === 'ar' ? 'rtl' : 'ltr';
+let currentLang = localStorage.getItem('anima_lang') || 'en';
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.dir = dir;
 
         function dismissToast() {
