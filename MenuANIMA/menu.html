@@ -263,13 +263,7 @@
     <header class="top-navbar">
         <div class="navbar-content">
             <div class="logo-container" onclick="window.location.href='index.html'">
-                <img src="../Anmialogo..png" alt="MenuANIMA Logo" class="navbar-logo">
-            </div>
-            <div class="spacer"></div>
-            <div class="nav-buttons">
-                <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
-                <a href="index.html" id="home-link" class="menu-button">Home</a>
-            </div>
+                <a href="index.html" class="menu-button">Home</a>\n            </div>
         </div>
     </header>
 
@@ -287,13 +281,7 @@
     </div>
 
     <script>
-        let currentLang = localStorage.getItem('anima_lang') || 'en';
 
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'ar' : 'en';
-            localStorage.setItem('anima_lang', currentLang);
-            updateUI();
-        }
 
         function updateUI() {
             const isAr = (currentLang === 'ar');
