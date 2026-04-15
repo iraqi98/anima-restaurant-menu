@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-</new_str
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -54,12 +53,6 @@
             margin: 0 auto;
         }
 
-        .navbar-logo { height: 45px; object-fit: contain; cursor: pointer; }
-
-        .spacer { flex-grow: 1; }
-
-        .nav-buttons { display: flex; gap: 12px; }
-
         .menu-button {
             color: #ffffff;
             text-decoration: none;
@@ -77,7 +70,9 @@
 
         .divider-card {
             grid-column: span 2 !important;
-            background: rgba(255,255,255,0.95);\n            backdrop-filter: blur(15px);\n            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 28px;
             height: 120px;
             cursor: default;
@@ -102,7 +97,9 @@
             font-family: 'Montserrat', 'Cairo', sans-serif;
             font-size: 1.5rem;
             font-weight: 800;
-            color: #000000;\n            letter-spacing: 1.5px;\n            text-transform: uppercase;
+            color: #000000;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             line-height: 1.2;
         }
 
@@ -111,6 +108,9 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             margin-top: 5px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
         }
         
         .category-card {
@@ -296,8 +296,7 @@
 <body>
     <header class="top-navbar">
         <div class="navbar-content">
-            <div class="logo-container" onclick="window.location.href='index.html'">
-                <a href="index.html" class="menu-button">Home</a>\n            </div>
+            <a href="index.html" class="menu-button">Home</a>
         </div>
     </header>
 
@@ -315,18 +314,9 @@
     </div>
 
     <script>
-
-
-        function updateUI() {
-            const isAr = (currentLang === 'ar');
-            document.documentElement.dir = localStorage.getItem('anima_lang') === 'ar' ? 'rtl' : 'ltr';
-            
-            if(typeof ANIMA_UI !== 'undefined') {
-                document.getElementById('home-link').textContent = ANIMA_UI[currentLang].home;
-                document.getElementById('toast-text').textContent = ANIMA_UI[currentLang].orderTip;
-            }
-            renderMenu();
-        }
+        let currentLang = 'en';
+        const dir = localStorage.getItem('anima_lang') === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.dir = dir;
 
         function dismissToast() {
             document.getElementById('order-toast').classList.remove('show');
@@ -362,15 +352,38 @@
 
         function renderMenu() {
             const container = document.getElementById('menu-container');
-            container.innerHTML = '';
-
-
-
             if (typeof ANIMA_DATA === 'undefined') return;
 
+            // Drinks divider
+            const drinksDiv = document.createElement('div');
+            drinksDiv.className = 'divider-card';
+            const drinksImg = document.createElement('img');
+            drinksImg.src = 'drinks/divider-drinks.png';
+            drinksImg.className = 'divider-image';
+            drinksImg.alt = 'Drinks';
+            const drinksTitleEl = document.createElement('div');
+            drinksTitleEl.className = 'divider-title';
+            drinksTitleEl.textContent = 'DRINKS';
+            drinksDiv.appendChild(drinksImg);
+            drinksDiv.appendChild(drinksTitleEl);
+            container.appendChild(drinksDiv);
+
             ANIMA_DATA.categories.forEach((category, index) => {
-
-
+                // Food divider before pizza
+                if (index === 4) {
+                    const foodDiv = document.createElement('div');
+                    foodDiv.className = 'divider-card';
+                    const foodImg = document.createElement('img');
+                    foodImg.src = 'food/divider-food.png';
+                    foodImg.className = 'divider-image';
+                    foodImg.alt = 'Food';
+                    const foodTitleEl = document.createElement('div');
+                    foodTitleEl.className = 'divider-title';
+                    foodTitleEl.textContent = 'FOOD';
+                    foodDiv.appendChild(foodImg);
+                    foodDiv.appendChild(foodTitleEl);
+                    container.appendChild(foodDiv);
+                }
                 const card = document.createElement('div');
                 card.className = 'category-card' + (index % 3 === 0 ? ' full-width' : '');
                 card.id = 'card-' + category.id;
@@ -439,7 +452,7 @@
                 const closeBtn2 = document.createElement('button');
                 closeBtn2.className = 'close-btn';
                 closeBtn2.onclick = (e) => closeCategory(e, category.id);
-                closeBtn2.textContent = ANIMA_UI ? (ANIMA_UI[currentLang]?.close || 'Close') : 'Close';
+                closeBtn2.textContent = 'Close';
                 closeSection.appendChild(closeBtn2);
                 list.appendChild(closeSection);
 
@@ -449,7 +462,7 @@
         }
         
         window.onload = () => {
-            updateUI();
+            renderMenu();
             setTimeout(() => {
                 document.getElementById('order-toast').classList.add('show');
             }, 2000);
