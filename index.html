@@ -97,9 +97,19 @@
             box-shadow: 0 20px 50px rgba(255,188,0,0.3);
         }
 
-.tiktok-svg {
-  color: #ff0050 !important;
+.tiktok-original .tiktok-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 4px 12px rgba(255,0,80,0.4));
+  animation: tiktokGlow 2s ease-in-out infinite alternate;
 }
+@keyframes tiktokGlow {
+  from { filter: drop-shadow(0 4px 12px rgba(255,0,80,0.4)); }
+  to { filter: drop-shadow(0 8px 20px rgba(255,0,80,0.6)); }
+}
+.social-icon:hover .tiktok-img { transform: rotate(360deg) scale(1.1); }
 
 
         @media (max-width: 480px) {
@@ -131,10 +141,8 @@
             <i class="fab fa-instagram"></i>
         </a>
 
-        <a href="https://www.tiktok.com/@anima.iqq?_r=1&_t=ZS-95Yv81DVh0n" class="social-icon tiktok-svg" target="_blank" title="TikTok - ANIMA">
-            <svg viewBox="0 0 448 512" width="28" height="28">
-                <path fill="currentColor" d="M448 209.91a114.25 114.25 0 0 1-66.32-21.31l.01.003A62.72 62.72 0 0 0 385 142.2a64.1 64.1 0 0 1-128.27 0c0-24.28 19.69-43.49 43.99-43.49 2.58 0 5.12.11 7.61.32A63.12 63.12 0 0 1 368 110.68v.58c0 46.8-38 84.9-85 84.9h-1.71A65.6 65.6 0 0 1 231 117.77V64H128v352h103V320c0-26.4 21.42-47.8 47.8-47.8s47.8 21.41 47.8 47.8v96h103V297.61c0-28.8-21.74-53.24-50.98-57.75z"/>
-            </svg>
+<a href="https://www.tiktok.com/@anima.iqq?_r=1&_t=ZS-95Yv81DVh0n" class="social-icon tiktok-original" target="_blank" title="TikTok - ANIMA">
+            <img src="tiktok-icon.png" alt="TikTok" class="tiktok-img" loading="lazy">
         </a>
 
     </footer>
