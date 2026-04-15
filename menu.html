@@ -76,9 +76,7 @@
 
         .divider-card {
             grid-column: span 2 !important;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.95);\n            backdrop-filter: blur(15px);\n            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 28px;
             height: 120px;
             cursor: default;
@@ -103,9 +101,7 @@
             font-family: 'Montserrat', 'Cairo', sans-serif;
             font-size: 1.5rem;
             font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            color: #000000;\n            letter-spacing: 1.5px;\n            text-transform: uppercase;
             line-height: 1.2;
         }
 
@@ -300,13 +296,7 @@
     <header class="top-navbar">
         <div class="navbar-content">
             <div class="logo-container" onclick="window.location.href='index.html'">
-                <img src="Anmialogo..png" alt="ANIMA Logo" class="navbar-logo">
-            </div>
-            <div class="spacer"></div>
-            <div class="nav-buttons">
-                <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
-                <a href="index.html" id="home-link" class="menu-button">Home</a>
-            </div>
+                <a href="index.html" class="menu-button">Home</a>\n            </div>
         </div>
     </header>
 
@@ -324,19 +314,11 @@
     </div>
 
     <script>
-        let currentLang = localStorage.getItem('anima_lang') || 'en';
 
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'ar' : 'en';
-            localStorage.setItem('anima_lang', currentLang);
-            updateUI();
-        }
 
         function updateUI() {
             const isAr = (currentLang === 'ar');
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
+            document.documentElement.dir = localStorage.getItem('anima_lang') === 'ar' ? 'rtl' : 'ltr';
             
             if(typeof ANIMA_UI !== 'undefined') {
                 document.getElementById('home-link').textContent = ANIMA_UI[currentLang].home;
