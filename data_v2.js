@@ -30,20 +30,24 @@ const ANIMA_DATA = {
       title: { en: 'Coffee Drinks', ar: 'مشاريب القهوة' },
       items: [
         { name: 'Espresso', price: '4,000 IQD', description: 'الجوهر. بدون إضافات، بدون تعقيد. اللي يعرفه يكتفي بي.', image: 'drinks/espresso.jpg' },
-        { name: 'Flat White', price: '5,000 IQD', description: 'الحليب والقهوة بتوازن نادر. مو كثير، مو قليل. هيچ بالضبط.', image: 'drinks/cortado.jpg' },
-        { name: 'Latte', price: '5,500 IQD', description: 'ناعم، دافي، يمشي معك بأي وقت. الكلاسيك اللي ما يخيب.', image: 'drinks/iced-latte.jpg' },
+        { name: 'Flat White', price: '5,000 IQD', description: 'الحليب والقهوة بتوازن نادر. مو كثير، مو قليل. هيچ بالضبط.', image: '' },
+        { name: 'Latte', price: '5,500 IQD', description: 'ناعم، دافي، يمشي معك بأي وقت. الكلاسيك اللي ما يخيب.', image: '' },
         { name: 'Iced Latte', price: '5,500 IQD', description: 'ناعم، بارد، يمشي وياك بأي وقت. الكلاسيك اللي ما يخيب.', image: 'drinks/iced-latte.jpg' },
-        { name: 'Spanish Latte', price: '6,000 IQD', description: 'حليب + حليب مكثف + إسبريسو. حلو بدون ما يطلب منك تقرر.', image: 'drinks/spanish-latte.jpg' },
-        { name: 'Americano', price: '5,000 IQD', description: 'إسبريسو يأخذ وقته. هادي، عميق، ما يستعجل.', image: 'drinks/espresso.jpg' },
+        { name: 'Spanish Latte', price: '6,000 IQD', description: 'حليب + حليب مكثف + إسبريسو. حلو بدون ما يطلب منك تقرر.', image: '' },
+        { name: 'Americano', price: '5,000 IQD', image: '' },
         { name: 'Cortado', price: '5,000 IQD', description: 'نص إسبريسو، نص حليب. لما تريد تركيز بدون مرارة زايدة.', image: 'drinks/cortado.jpg' },
-        { name: 'Cappuccino', price: '5,500 IQD', description: 'ثلاث طبقات بكوب واحد. كل رشفة غير اللي قبلها.', image: 'drinks/cortado.jpg' },
+        { name: 'Cappuccino', price: '5,500 IQD', description: 'ثلاث طبقات بكوب واحد. كل رشفة غير اللي قبلها.', image: '' },
         { name: 'Caramel Latte', price: '6,000 IQD', description: 'كراميل، حليب، قهوة. الصبح اللي يستاهل تقوم علموده.', image: 'drinks/caramel-latte.jpg' },
-        { name: 'Hot Chocolate', price: '5,500 IQD', description: 'مو قهوة، بس هم يدفي.', image: 'drinks/iced-mocha.jpg' },
-        { name: 'Iraqi Tea', price: '1,500 IQD', description: 'مو اوفر بس يحتاج يكون بكل مكان.', image: 'drinks/hibiscus.jpg' },
-        { name: 'Mocha Latte', price: '6,000 IQD', description: 'ما تقدر تختار بين القهوة والشوكولاتة? — ما تحتاج.', image: 'drinks/iced-mocha.jpg' },
-        { name: 'Turkish Coffee', price: '4,000 IQD', description: 'مو بس تنشرب، تنقري هم.', image: 'drinks/espresso.jpg' },
+        { name: 'Hot Chocolate', price: '5,500 IQD', description: 'مو قهوة، بس هم يدفي.', image: '' },
+        { name: 'Iraqi Tea', price: '1,500 IQD', description: 'مو اوفر بس يحتاج يكون بكل مكان.', image: '' },
+        { name: 'Mocha Latte', price: '6,000 IQD', description: 'ما تقدر تختار بين القهوة والشوكولاتة? — ما تحتاج.', image: '' },
+        { name: 'Turkish Coffee', price: '4,000 IQD', description: 'مو بس تنشرب، تنقري هم.', image: '' },
         { name: 'Hibiscus Iced Tea', price: '6,000 IQD', description: 'شاي كركديه بارد على ثلج. اللون أحمر، الطعم حامض، المزاج صح.', image: 'drinks/hibiscus.jpg' },
-        { name: 'Peach Iced Tea', price: '6,000 IQD', description: 'خوخ وشاي وثلج. يخبل مثل يوم ما عندك شغل بي.', image: 'drinks/peach-iced-tea.jpg' }
+        { name: 'Peach Iced Tea', price: '6,000 IQD', description: 'خوخ وشاي وثلج. يخبل مثل يوم ما عندك شغل بي.', image: 'drinks/peach-iced-tea.jpg' },
+        { name: 'Ice Mocha Latte', image: '' },
+        { name: 'Ice Caramel Latte', image: '' },
+        { name: 'Spanish Latte Ice', image: '' },
+        { name: 'Ice Americano', image: '' }
       ]
     },
     {
@@ -70,7 +74,7 @@ const ANIMA_DATA = {
         { name: 'Mocha Frappe', price: '6,000 IQD', description: 'شوكولاتة مثلجة بروح قهوة. مو بس حلو، عميق هم.', image: 'drinks/mocha-frappe.jpg' },
         { name: 'Mango Smoothie', price: '6,000 IQD', description: 'بس مانجو بارد. النوع اللي يخليك تتذكر الشتا حتى بالصيف.', image: 'drinks/mango-smoothie.jpg' },
         { name: 'Strawberry Smoothie', price: '6,000 IQD', description: 'فراولة طازجة، ما تحتاج تسأل أكثر. الجواب بالكوب.', image: 'drinks/strawberry-smoothie.jpg' },
-        { name: 'Orange Juice', price: '5,000 IQD', description: 'برتقال طازج، عصرناه هسه. البساطة أحياناً هي الاختيار الصح.', image: 'drinks/peach-iced-tea.jpg' }
+        { name: 'Orange Juice', price: '5,000 IQD', description: 'برتقال طازج، عصرناه هسه. البساطة أحياناً هي الاختيار الصح.', image: '' }
       ]
     },
     {
