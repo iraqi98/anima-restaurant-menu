@@ -627,24 +627,64 @@
 
         // Music Logic
         let isPlaying = false;
-        function toggleMusic() {
-            const audio = document.getElementById('ambient-audio');
-            const btn = document.getElementById('music-btn');
+        const audio = document.getElementById('ambient-audio');
+        const btn = document.getElementById('music-btn');
+
+        function updateMusicButton() {
             if (isPlaying) {
-                audio.pause();
-                // Show vinyl icon (not spinning)
-                btn.innerHTML = '<div class="vinyl-icon"></div>';
-                btn.style.color = '#fff';
-                btn.style.borderColor = 'rgba(255,255,255,0.2)';
-            } else {
-                audio.play().catch(e => console.log('Playback prevented', e));
-                // Show spinning vinyl icon
                 btn.innerHTML = '<div class="vinyl-icon spinning"></div>';
                 btn.style.color = '#ffbc00';
                 btn.style.borderColor = '#ffbc00';
+            } else {
+                btn.innerHTML = '<div class="vinyl-icon"></div>';
+                btn.style.color = '#fff';
+                btn.style.borderColor = 'rgba(255,255,255,0.2)';
             }
-            isPlaying = !isPlaying;
         }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play().catch(e => {
+                    console.log('Playback prevented:', e);
+                    // If autoplay is blocked, just toggle state back
+                    isPlaying = false;
+                });
+            }
+            updateMusicButton();
+        }
+
+        // Try to autoplay music on first user interaction
+        document.addEventListener('click', function firstClickHandler() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updateMusicButton();
+                }).catch(e => {
+                    console.log('Autoplay blocked, waiting for manual play');
+                });
+            }
+            // Remove this listener after first attempt
+            document.removeEventListener('click', firstClickHandler);
+        }, { once: true });
+
+        // Also try on first keypress
+        document.addEventListener('keydown', function firstKeyHandler() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updateMusicButton();
+                }).catch(e => {
+                    console.log('Autoplay blocked, waiting for manual play');
+                });
+            }
+            document.removeEventListener('keydown', firstKeyHandler);
+        }, { once: true });
+
+        // Set initial button state
+        updateMusicButton();
 
         // Parallax Effect
         const parallaxWrapper = document.getElementById('parallax-wrapper');
