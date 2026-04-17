@@ -436,8 +436,63 @@
             align-items: center;
             justify-content: center;
             width: 40px;
+            height: 40px;
             padding: 0;
             border-radius: 50%;
+            overflow: visible;
+        }
+
+        /* Vinyl Record Icon */
+        .vinyl-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #2a2a2a 30%, #1a1a1a 60%, #0a0a0a 100%);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .vinyl-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #333;
+            border: 1px solid #444;
+        }
+
+        .vinyl-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: repeating-radial-gradient(circle at center,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(60, 60, 60, 0.3) 2px,
+                    rgba(60, 60, 60, 0.3) 3px);
+        }
+
+        .vinyl-icon.spinning {
+            animation: vinylSpin 3s linear infinite;
+        }
+
+        @keyframes vinylSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 480px) {
@@ -576,12 +631,14 @@
             const btn = document.getElementById('music-btn');
             if (isPlaying) {
                 audio.pause();
-                btn.innerHTML = '<i class="fas fa-music"></i>';
+                // Show vinyl icon (not spinning)
+                btn.innerHTML = '<div class="vinyl-icon"></div>';
                 btn.style.color = '#fff';
                 btn.style.borderColor = 'rgba(255,255,255,0.2)';
             } else {
                 audio.play().catch(e => console.log('Playback prevented', e));
-                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                // Show spinning vinyl icon
+                btn.innerHTML = '<div class="vinyl-icon spinning"></div>';
                 btn.style.color = '#ffbc00';
                 btn.style.borderColor = '#ffbc00';
             }
