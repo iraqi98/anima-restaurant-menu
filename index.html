@@ -531,20 +531,46 @@
     <script>
         let currentLang = localStorage.getItem('anima_lang') || 'en';
 
+        // Apply language on page load
+        function applyLanguage() {
+            const isAr = (currentLang === 'ar');
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+            document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
+
+            if (window.ANIMA_UI) {
+                // Update all UI elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (window.ANIMA_UI[currentLang][key]) {
+                        el.textContent = window.ANIMA_UI[currentLang][key];
+                    }
+                });
+
+                // Update main menu button
+                const mainMenuBtn = document.getElementById('main-menu-btn');
+                if (mainMenuBtn) {
+                    mainMenuBtn.textContent = window.ANIMA_UI[currentLang].viewMenu || 'View Menu';
+                }
+            }
+        }
+
         function toggleLanguage() {
             currentLang = (currentLang === 'en') ? 'ar' : 'en';
             localStorage.setItem('anima_lang', currentLang);
-            updateUI();
+            applyLanguage();
         }
 
-        function updateUI() {
-            const isAr = (currentLang === 'ar');
-            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
-            if (window.ANIMA_UI) {
-                document.getElementById('main-menu-btn').textContent = window.ANIMA_UI[currentLang].viewMenu || 'View Menu';
+        // Listen for language changes from other tabs/windows
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'anima_lang' && e.newValue) {
+                currentLang = e.newValue;
+                applyLanguage();
             }
-        }
+        });
+
+        // Apply language when page loads
+        document.addEventListener('DOMContentLoaded', applyLanguage);
 
         // Music Logic
         let isPlaying = false;
@@ -616,7 +642,12 @@
             }, 600);
         });
 
-        window.onload = updateUI;
+        // Apply language on initial load (also handle case where DOM is already loaded)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyLanguage);
+        } else {
+            applyLanguage();
+        }
     </script>
 </body>
 
