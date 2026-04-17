@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="data_v2.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -105,6 +106,19 @@
             line-height: 1.2;
         }
 
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sparkle Effect */
+        .sparkle { position: fixed; width: 8px; height: 8px; background: #ffbc00; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #ffbc00, 0 0 20px #ffbc00; animation: sparkleAnim 0.8s ease-out forwards; z-index: 9999; }
+        @keyframes sparkleAnim {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -80px) scale(1.5); opacity: 0.8; }
+            100% { transform: translate(-50%, -120px) scale(0); opacity: 0; }
+        }
+
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -120,12 +134,19 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 28px;
-            transition: all 0.3s cubic-bezier(0.1, 0.7, 0.1, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             scroll-margin-top: 100px;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .category-card:active {
+            transform: scale(0.96);
         }
 
         .category-card.full-width { grid-column: span 2; }
@@ -134,6 +155,8 @@
             grid-column: span 2 !important;
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255,255,255,0.4);
+            transform: scale(1) !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.2);
         }
 
         .category-card-banner {
@@ -292,15 +315,78 @@
             .order-toast { width: 95%; padding: 10px 16px; }
             .toast-content { font-size: 0.8rem; }
             .top-navbar { padding: 0 12px; }
+            #music-btn { width: 34px; height: 34px; }
         }
+
+        /* Music & Trail CSS */
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(255,188,0,0.5); } 70% { box-shadow: 0 0 0 15px rgba(255,188,0,0); } 100% { box-shadow: 0 0 0 0 rgba(255,188,0,0); } }
+        #music-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; margin-inline-end: 10px; transition: all 0.3s; }
+        
+        .glow-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffbc00;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px #ffbc00, 0 0 25px #ffbc00;
+            animation: trailFade 0.4s linear forwards;
+            z-index: 9998;
+        }
+        @keyframes trailFade {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+        }
+
+        /* Music Waves Visualizer */
+        .wave-container {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 150px;
+            z-index: -1; opacity: 0; transition: opacity 1.5s ease-in-out; pointer-events: none; overflow: hidden;
+        }
+        .wave-container.playing { opacity: 0.15; }
+        .wave {
+            position: absolute; bottom: 0; left: 0; width: 200%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23ffbc00"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: waveMove 3s linear infinite;
+        }
+        .wave2 { bottom: -10px; opacity: 0.5; animation-duration: 5s; animation-direction: reverse; filter: hue-rotate(20deg); }
+        .wave3 { bottom: -20px; opacity: 0.3; animation-duration: 7s; filter: hue-rotate(-20deg); }
+        @keyframes waveMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Cinematic Page Enter */
+        .page-enter-transition {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #01164B; z-index: 999999; pointer-events: none;
+            transition: opacity 0.6s ease-out;
+            opacity: 1;
+        }
+        .page-enter-transition.loaded { opacity: 0; }
+
     </style>
 </head>
 <body>
+    <div class="page-enter-transition" id="page-enter"></div>
+
     <header class="top-navbar">
         <div class="navbar-content">
-            <a href="index.html" class="menu-button">Home</a>
+            <button id="music-btn" class="menu-button" onclick="toggleMusic()" title="Play Ambience">
+                <i class="fas fa-music"></i>
+            </button>
+            <a href="index.html" class="menu-button" id="home-btn">Home</a>
         </div>
     </header>
+
+    <div class="wave-container" id="music-waves">
+        <div class="wave wave3"></div>
+        <div class="wave wave2"></div>
+        <div class="wave"></div>
+    </div>
+
+    <audio id="ambient-audio" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         <div class="categories-grid" id="menu-container"></div>
@@ -316,8 +402,8 @@
     </div>
 
     <script>
-let currentLang = localStorage.getItem('anima_lang') || 'en';
-        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        let currentLang = localStorage.getItem('anima_lang') || 'en';
+        const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
         document.documentElement.dir = dir;
 
         function dismissToast() {
@@ -339,8 +425,10 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
             list.classList.add('active');
             card.classList.add('active');
             setTimeout(() => {
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+                const navHeight = 85;
+                const topPos = card.getBoundingClientRect().top + window.scrollY - navHeight;
+                window.scrollTo({ top: topPos, behavior: 'smooth' });
+            }, 360);
         }
 
         function closeCategory(e, id) {
@@ -368,13 +456,14 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
             drinksTitleEl.textContent = currentLang === 'ar' ? 'المشروبات' : 'DRINKS';
             drinksDiv.appendChild(drinksImg);
             drinksDiv.appendChild(drinksTitleEl);
+            drinksDiv.style.animation = 'slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) both';
             container.appendChild(drinksDiv);
 
             if (typeof ANIMA_DATA === 'undefined') return;
 
             ANIMA_DATA.categories.forEach((category, index) => {
-                // Food divider before pizza (index 4)
-                if (index === 4) {
+                // Food divider before pizza
+                if (category.id === 'pizza') {
                     const foodDiv = document.createElement('div');
                     foodDiv.className = 'divider-card';
                     const foodImg = document.createElement('img');
@@ -386,13 +475,32 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
                     foodTitleEl.textContent = currentLang === 'ar' ? 'المأكولات' : 'FOOD';
                     foodDiv.appendChild(foodImg);
                     foodDiv.appendChild(foodTitleEl);
+                    foodDiv.style.animation = 'slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) both';
+                    foodDiv.style.animationDelay = `${(index + 1) * 0.05}s`;
                     container.appendChild(foodDiv);
                 }
 
+                const fullWidthCategories = ['coffee-drinks', 'pizza'];
                 const card = document.createElement('div');
-                card.className = 'category-card' + (index % 3 === 0 ? ' full-width' : '');
+                card.className = 'category-card' + (fullWidthCategories.includes(category.id) ? ' full-width' : '');
                 card.id = 'card-' + category.id;
+                card.style.animationDelay = `${(index + 2) * 0.05}s`;
                 card.onclick = () => toggleCategory(category.id);
+
+                // 3D Tilt Logic
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg tilt
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
 
                 const banner = document.createElement('div');
                 banner.className = 'category-card-banner';
@@ -435,7 +543,7 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
                     header.className = 'item-header';
                     const nameH3 = document.createElement('h3');
                     nameH3.className = 'item-name';
-                    nameH3.textContent = item.name;
+                    nameH3.textContent = typeof item.name === 'object' ? (item.name[currentLang] || item.name.en) : item.name;
                     const priceDiv = document.createElement('div');
                     priceDiv.className = 'item-price';
                     priceDiv.textContent = item.price;
@@ -444,7 +552,7 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
                     menuItem.appendChild(header);
 
                     if (item.description) {
-                        const descP = document.createElement('p');
+                        const descP = document.createElement('div');
                         descP.className = 'item-description';
                         descP.textContent = item.description;
                         menuItem.appendChild(descP);
@@ -457,7 +565,7 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
                 const closeBtn2 = document.createElement('button');
                 closeBtn2.className = 'close-btn';
                 closeBtn2.onclick = (e) => closeCategory(e, category.id);
-                closeBtn2.textContent = 'Close';
+                closeBtn2.textContent = window.ANIMA_UI ? window.ANIMA_UI[currentLang].close : 'Close';
                 closeSection.appendChild(closeBtn2);
                 list.appendChild(closeSection);
 
@@ -467,11 +575,93 @@ let currentLang = localStorage.getItem('anima_lang') || 'en';
         }
         
         window.onload = () => {
+            if (window.ANIMA_UI) {
+                document.getElementById('home-btn').textContent = window.ANIMA_UI[currentLang].home || 'Home';
+                document.getElementById('toast-text').textContent = window.ANIMA_UI[currentLang].orderTip || 'Please place your order at the cashier';
+            }
             renderMenu();
             setTimeout(() => {
                 document.getElementById('order-toast').classList.add('show');
             }, 2000);
         };
+        // Sparkle Touch Effect
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 800);
+        }
+
+        document.addEventListener('click', (e) => {
+            if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.closest('#scratch-modal')) return;
+            createSparkle(e.clientX, e.clientY);
+        });
+
+        // Music Logic
+        let isPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('ambient-audio');
+            const btn = document.getElementById('music-btn');
+            const waves = document.getElementById('music-waves');
+            if(isPlaying) {
+                audio.pause();
+                btn.innerHTML = '<i class="fas fa-music"></i>';
+                btn.style.color = '#fff';
+                btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                btn.style.animation = 'none';
+                waves.classList.remove('playing');
+            } else {
+                audio.play().catch(e => console.log('Playback prevented', e));
+                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                btn.style.color = '#ffbc00';
+                btn.style.borderColor = '#ffbc00';
+                btn.style.animation = 'pulseGlow 2s infinite';
+                waves.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Glowing Touch Trail Logic
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'glow-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => trail.remove(), 400);
+        }
+
+        let lastTrailTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTrailTime > 20) { // Throttle to 50fps
+                createTrail(e.clientX, e.clientY);
+                lastTrailTime = now;
+            }
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const now = Date.now();
+                if (now - lastTrailTime > 20) {
+                    createTrail(e.touches[0].clientX, e.touches[0].clientY);
+                    lastTrailTime = now;
+                }
+            }
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const pageEnter = document.getElementById('page-enter');
+                if(pageEnter) {
+                    pageEnter.classList.add('loaded');
+                    setTimeout(() => pageEnter.remove(), 600);
+                }
+            }, 50);
+        });
+
     </script>
 </body>
 </html>
