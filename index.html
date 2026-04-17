@@ -264,115 +264,58 @@
         }
 
 
-        .floating-emojis {
-            position: absolute;
-            top: 0;
+        /* Music Waves Visualizer */
+        .wave-container {
+            position: fixed;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
+            height: 180px;
             z-index: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            pointer-events: none;
             overflow: hidden;
         }
 
-        .emoji {
-            position: absolute;
-            font-size: 2.5rem;
-            opacity: 0;
-            animation: floatEmoji linear infinite;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        .wave-container.playing {
+            opacity: 0.2;
         }
 
-        @keyframes floatEmoji {
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23ffbc00"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: waveMove 3s linear infinite;
+        }
+
+        .wave2 {
+            bottom: -10px;
+            opacity: 0.5;
+            animation-duration: 5s;
+            animation-direction: reverse;
+            filter: hue-rotate(20deg);
+        }
+
+        .wave3 {
+            bottom: -20px;
+            opacity: 0.3;
+            animation-duration: 7s;
+            filter: hue-rotate(-20deg);
+        }
+
+        @keyframes waveMove {
             0% {
-                transform: translateY(110vh) rotate(0deg) scale(0.8);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.15;
-            }
-
-            90% {
-                opacity: 0.15;
+                transform: translateX(0);
             }
 
             100% {
-                transform: translateY(-10vh) rotate(360deg) scale(1.2);
-                opacity: 0;
+                transform: translateX(-50%);
             }
-        }
-
-        .e1 {
-            left: 5%;
-            animation-duration: 18s;
-            animation-delay: 0s;
-        }
-
-        .e2 {
-            left: 15%;
-            animation-duration: 22s;
-            animation-delay: 3s;
-        }
-
-        .e3 {
-            left: 25%;
-            animation-duration: 16s;
-            animation-delay: 7s;
-        }
-
-        .e4 {
-            left: 35%;
-            animation-duration: 25s;
-            animation-delay: 1s;
-        }
-
-        .e5 {
-            left: 45%;
-            animation-duration: 19s;
-            animation-delay: 5s;
-        }
-
-        .e6 {
-            left: 55%;
-            animation-duration: 21s;
-            animation-delay: 2s;
-        }
-
-        .e7 {
-            left: 65%;
-            animation-duration: 17s;
-            animation-delay: 8s;
-        }
-
-        .e8 {
-            left: 75%;
-            animation-duration: 23s;
-            animation-delay: 4s;
-        }
-
-        .e9 {
-            left: 85%;
-            animation-duration: 20s;
-            animation-delay: 6s;
-        }
-
-        .e10 {
-            left: 90%;
-            animation-duration: 24s;
-            animation-delay: 9s;
-        }
-
-        .e11 {
-            left: 40%;
-            animation-duration: 18s;
-            animation-delay: 10s;
-        }
-
-        .e12 {
-            left: 60%;
-            animation-duration: 26s;
-            animation-delay: 0.5s;
         }
 
         /* Sparkle Effect */
@@ -443,50 +386,105 @@
             overflow: visible;
         }
 
-        /* Vinyl Record Icon */
-        .vinyl-icon {
-            width: 24px;
-            height: 24px;
+        /* Vinyl Record Player Icon */
+        .record-player-icon {
+            width: 32px;
+            height: 32px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Vinyl disc */
+        .record-player-icon .vinyl {
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #2a2a2a 30%, #1a1a1a 60%, #0a0a0a 100%);
+            background: radial-gradient(circle at 40% 40%, #2a2a2a 0%, #1a1a1a 30%, #0a0a0a 70%, #1a1a1a 100%);
             position: relative;
             transition: transform 0.3s ease;
         }
 
-        .vinyl-icon::before {
+        /* Vinyl grooves */
+        .record-player-icon .vinyl::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #333;
-            border: 1px solid #444;
-        }
-
-        .vinyl-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             background: repeating-radial-gradient(circle at center,
                     transparent 0px,
-                    transparent 2px,
-                    rgba(60, 60, 60, 0.3) 2px,
-                    rgba(60, 60, 60, 0.3) 3px);
+                    transparent 3px,
+                    rgba(80, 80, 80, 0.2) 3px,
+                    rgba(80, 80, 80, 0.2) 4px);
         }
 
-        .vinyl-icon.spinning {
-            animation: vinylSpin 3s linear infinite;
+        /* Center label */
+        .record-player-icon .vinyl::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, #cc2366, #8a1840);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes vinylSpin {
+        /* Tonearm */
+        .record-player-icon .tonearm {
+            position: absolute;
+            top: -2px;
+            right: -4px;
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(90deg, #c0c0c0, #e8e8e8, #c0c0c0);
+            border-radius: 2px;
+            transform-origin: top center;
+            transform: rotate(25deg);
+            transition: transform 0.5s ease;
+        }
+
+        /* Tonearm base */
+        .record-player-icon .tonearm::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -2px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, #d4d4d4, #888);
+        }
+
+        /* Needle */
+        .record-player-icon .tonearm::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -1px;
+            width: 5px;
+            height: 3px;
+            background: #666;
+            border-radius: 1px;
+        }
+
+        /* Spinning animation */
+        .record-player-icon.playing .vinyl {
+            animation: recordSpin 3s linear infinite;
+        }
+
+        .record-player-icon.playing .tonearm {
+            transform: rotate(15deg);
+        }
+
+        @keyframes recordSpin {
             from {
                 transform: rotate(0deg);
             }
@@ -534,19 +532,10 @@
 </head>
 
 <body>
-    <div class="floating-emojis">
-        <span class="emoji e1">☕</span>
-        <span class="emoji e2">🍵</span>
-        <span class="emoji e3">🥤</span>
-        <span class="emoji e4">🥭</span>
-        <span class="emoji e5">🍓</span>
-        <span class="emoji e6">🍊</span>
-        <span class="emoji e7">🍕</span>
-        <span class="emoji e8">🌮</span>
-        <span class="emoji e9">🥗</span>
-        <span class="emoji e10">🍰</span>
-        <span class="emoji e11">🍫</span>
-        <span class="emoji e12">🍍</span>
+    <div class="wave-container" id="music-waves">
+        <div class="wave wave3"></div>
+        <div class="wave wave2"></div>
+        <div class="wave"></div>
     </div>
     <header class="top-navbar">
         <div class="navbar-content">
@@ -631,14 +620,23 @@
         const btn = document.getElementById('music-btn');
 
         function updateMusicButton() {
+            const waves = document.getElementById('music-waves');
             if (isPlaying) {
-                btn.innerHTML = '<div class="vinyl-icon spinning"></div>';
+                btn.innerHTML = `<div class="record-player-icon playing">
+                    <div class="vinyl"></div>
+                    <div class="tonearm"></div>
+                </div>`;
                 btn.style.color = '#ffbc00';
                 btn.style.borderColor = '#ffbc00';
+                if (waves) waves.classList.add('playing');
             } else {
-                btn.innerHTML = '<div class="vinyl-icon"></div>';
+                btn.innerHTML = `<div class="record-player-icon">
+                    <div class="vinyl"></div>
+                    <div class="tonearm"></div>
+                </div>`;
                 btn.style.color = '#fff';
                 btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                if (waves) waves.classList.remove('playing');
             }
         }
 
@@ -649,7 +647,6 @@
             } else {
                 audio.play().catch(e => {
                     console.log('Playback prevented:', e);
-                    // If autoplay is blocked, just toggle state back
                     isPlaying = false;
                 });
             }
