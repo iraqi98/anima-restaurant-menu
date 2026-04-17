@@ -227,7 +227,7 @@
         .subcategory-list {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+            transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
             opacity: 0;
             display: flex;
             flex-direction: column;
@@ -612,22 +612,19 @@
         function toggleCategory(id) {
             const list = document.getElementById(id);
             const card = list.parentElement;
+
             if (list.classList.contains('active')) {
                 list.classList.remove('active');
                 card.classList.remove('active');
-                return;
+            } else {
+                list.classList.add('active');
+                card.classList.add('active');
+                setTimeout(() => {
+                    const navHeight = 90;
+                    const topPos = card.getBoundingClientRect().top + window.scrollY - navHeight;
+                    window.scrollTo({ top: topPos, behavior: 'smooth' });
+                }, 50);
             }
-            document.querySelectorAll('.subcategory-list.active').forEach(item => {
-                item.classList.remove('active');
-                item.parentElement.classList.remove('active');
-            });
-            list.classList.add('active');
-            card.classList.add('active');
-            setTimeout(() => {
-                const navHeight = 85;
-                const topPos = card.getBoundingClientRect().top + window.scrollY - navHeight;
-                window.scrollTo({ top: topPos, behavior: 'smooth' });
-            }, 360);
         }
 
         function closeCategory(e, id) {
@@ -636,7 +633,9 @@
             const card = list.parentElement;
             list.classList.remove('active');
             card.classList.remove('active');
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 350);
         }
 
         function renderMenu() {
@@ -841,6 +840,42 @@
             }
             isPlaying = !isPlaying;
         }
+
+        // Autoplay music on page load
+        function startMusicAuto() {
+            const audio = document.getElementById('ambient-audio');
+            const btn = document.getElementById('music-btn');
+            const waves = document.getElementById('music-waves');
+            audio.play().then(() => {
+                isPlaying = true;
+                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                btn.style.color = '#ffbc00';
+                btn.style.borderColor = '#ffbc00';
+                btn.style.animation = 'pulseGlow 2s infinite';
+                waves.classList.add('playing');
+            }).catch(() => {
+                // Browser blocked autoplay, try on first interaction
+                function playOnInteraction() {
+                    if (!isPlaying) {
+                        audio.play().then(() => {
+                            isPlaying = true;
+                            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                            btn.style.color = '#ffbc00';
+                            btn.style.borderColor = '#ffbc00';
+                            btn.style.animation = 'pulseGlow 2s infinite';
+                            waves.classList.add('playing');
+                        }).catch(() => {});
+                    }
+                    document.removeEventListener('click', playOnInteraction);
+                    document.removeEventListener('touchstart', playOnInteraction);
+                    document.removeEventListener('scroll', playOnInteraction);
+                }
+                document.addEventListener('click', playOnInteraction, { once: true });
+                document.addEventListener('touchstart', playOnInteraction, { once: true });
+                document.addEventListener('scroll', playOnInteraction, { once: true });
+            });
+        }
+        startMusicAuto();
 
         // Glowing Touch Trail Logic
         function createTrail(x, y) {
