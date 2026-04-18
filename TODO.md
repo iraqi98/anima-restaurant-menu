@@ -1,8 +1,11 @@
-# Task: Remove CSP eval error message from second page
+# TODO List for ANIMA Menu Project
 
-**Step 1:** Confirm exact file for "الصفحة الثانية" (likely MenuANIMA/index.html or menu.html) - [Pending user confirmation]
-**Step 2:** Search all HTML for exact CSP error text - [Done, not found as text]
-**Step 3:** Identify CSP meta tags causing violation warnings - [Done, found in menu.html, menu-clean.html]
-**Step 4:** Edit files to remove CSP meta tag - [Pending]
-**Step 5:** Test by opening file in browser - [Pending]
-**Step 6:** Verify console no CSP eval error - [Pending]
+## Current Task Progress
+- [x] Copy video to project (background-video.mp4)
+- [x] Replace rising emojis with video background in index.html
+- [x] Replace rising emojis with video background in menu-with-emojis.html
+- [ ] Test on localhost:3000
+- [ ] Complete task
+
+Updated after each step.
+

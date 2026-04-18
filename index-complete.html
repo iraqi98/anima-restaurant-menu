@@ -5,94 +5,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANIMA CAFÉ & PIZZERIA</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&family=Montserrat:wght@700;800&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </noscript>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <script src="data_v2.js"></script>
-
-    <!-- Animated Video Background -->
-    <style>
-        .rising-emojis {
-position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100vw;
-height: 100vh;
-            pointer-events: none;
-z-index: -2;
-            overflow: hidden;
-        }
-
-        .rising-emojis video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-opacity: 0.35;
-        }
-    </style>
-
 
     <!-- Rising Emojis + Waves Style -->
     <style>
-        .wave-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 180px;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .wave-container.playing {
-            opacity: 0.4 !important;
-        }
-
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23ffbc00"/></svg>') repeat-x;
-            background-size: 50% 100%;
-            animation: waveMove 3s linear infinite;
-        }
-
-        .wave2 {
-            bottom: -10px;
-            opacity: 0.5;
-            animation-duration: 5s;
-            animation-direction: reverse;
-            filter: hue-rotate(20deg);
-        }
-
-        .wave3 {
-            bottom: -20px;
-            opacity: 0.3;
-            animation-duration: 7s;
-            filter: hue-rotate(-20deg);
-        }
-
-        @keyframes waveMove {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-
+.wave-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  pointer-events: none;
+  overflow: hidden;
+}
+.wave-container.playing {
+  opacity: 0.4 !important;
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23ffbc00"/></svg>') repeat-x;
+  background-size: 50% 100%;
+  animation: waveMove 3s linear infinite;
+}
+.wave2 {
+  bottom: -10px;
+  opacity: 0.5;
+  animation-duration: 5s;
+  animation-direction: reverse;
+  filter: hue-rotate(20deg);
+}
+.wave3 {
+  bottom: -20px;
+  opacity: 0.3;
+  animation-duration: 7s;
+  filter: hue-rotate(-20deg);
+}
+@keyframes waveMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.rising-emojis {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 140vh;
+  pointer-events: none;
+  z-index: -2;
+  overflow: hidden;
+}
+.emoji-bubble {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0;
+  animation: riseBottomToTop 8s linear infinite;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.8)) drop-shadow(0 0 8px rgba(255,193,7,0.6));
+  will-change: transform;
+}
+@keyframes riseBottomToTop {
+  0% {
+    bottom: -80px;
+    opacity: 0;
+    transform: translateX(0) rotate(0deg) scale(0.5);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateX(0) rotate(4deg) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.4;
+    transform: translateX(40px) rotate(-3deg) scale(1.2);
+  }
+  100% {
+    bottom: 140vh;
+    opacity: 0;
+    transform: translateX(60px) rotate(0deg) scale(1.4);
+  }
+}
     </style>
     <!-- Original styles -->
     <style>
@@ -152,23 +160,20 @@ opacity: 0.35;
             }
         }
 
-body {
+        body {
             font-family: 'Roboto', 'Cairo', sans-serif;
             background: #01164B;
             color: #fff;
             line-height: 1.6;
             direction: ltr;
             min-height: 100vh;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-padding: 75px 20px 75px;
+            padding: 20px;
             text-align: center;
             position: relative;
-            box-sizing: border-box;
-            overflow: hidden;
         }
 
         .logo {
@@ -406,7 +411,6 @@ padding: 75px 20px 75px;
             align-items: center;
             will-change: transform;
             transition: transform 0.1s ease-out;
-            margin-top: 25vh;
         }
 
         #music-btn {
@@ -566,17 +570,13 @@ padding: 75px 20px 75px;
 </head>
 
 <body>
-    <!-- Animated Video Background -->
-    <div class="rising-emojis" id="risingEmojis">
-        <video autoplay loop muted playsinline>
-            <source src="background-video.mp4" type="video/mp4">
-        </video>
-    </div>
     <div class="wave-container" id="music-waves">
         <div class="wave wave3"></div>
         <div class="wave wave2"></div>
         <div class="wave"></div>
     </div>
+    <!-- Rising Emojis -->
+    <div class="rising-emojis" id="risingEmojis"></div>
     <header class="top-navbar">
         <div class="navbar-content">
             <!-- Logo removed -->
@@ -591,6 +591,7 @@ padding: 75px 20px 75px;
     </header>
 
     <div id="parallax-wrapper">
+        <img src="Anmialogo..png" alt="ANIMA Logo" class="logo">
         <a href="menu-with-emojis.html" class="menu-btn" id="main-menu-btn">View Menu</a>
     </div>
 
@@ -644,9 +645,9 @@ padding: 75px 20px 75px;
         });
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyLanguage);
+          document.addEventListener('DOMContentLoaded', applyLanguage);
         } else {
-            applyLanguage();
+          applyLanguage();
         }
 
         // Music Autoplay + Toggle
@@ -675,52 +676,43 @@ padding: 75px 20px 75px;
             }
         }
 
-        async function startAudio(unmute = false) {
-            if (unmute) {
-                audio.muted = false;
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play().catch(e => console.log('Toggle play failed'));
             }
-            try {
-                await audio.play();
-                isPlaying = true;
-            } catch (error) {
-                console.log('Playback prevented', error);
-                isPlaying = false;
-            }
+            isPlaying = !isPlaying;
             updateMusicButton();
         }
 
-        function toggleMusic() {
-            if (isPlaying && !audio.paused) {
-                audio.pause();
-                isPlaying = false;
-                updateMusicButton();
-            } else {
-                startAudio(true);
-            }
-        }
-
-        function attemptMutedAutoplay() {
+        // Aggressive autoplay
+audio.muted = false; // Direct play
+        audio.play().then(() => {
+            console.log('Autoplay started (muted)');
+            audio.muted = false; // Unmute after play
+            isPlaying = true;
+            updateMusicButton();
+        }).catch(e => {
+            console.log('Initial autoplay blocked, muted play');
             audio.muted = true;
-            audio.play().then(() => {
-                isPlaying = true;
-                updateMusicButton();
-            }).catch(() => {
-                isPlaying = false;
-            });
-        }
+            audio.play();
+        });
 
-        attemptMutedAutoplay();
-
-        // Resume on first interaction by unmuting and ensuring playback
-        const resumeAfterInteraction = () => {
-            startAudio(true);
-            document.removeEventListener('click', resumeAfterInteraction);
-        };
-        document.addEventListener('click', resumeAfterInteraction);
+        // Resume on focus/interaction
+        document.addEventListener('click', () => {
+            if (!isPlaying) {
+                audio.muted = false;
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updateMusicButton();
+                }).catch(() => {});
+            }
+        }, { once: true });
 
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden && !isPlaying) {
-                startAudio();
+                audio.play().catch(() => {});
             }
         });
 
@@ -765,9 +757,21 @@ padding: 75px 20px 75px;
             }, 600);
         });
 
-// Video background autoplay loop - no JS needed for rising effect
+        // Rising Emojis
+        const foodEmojis = ['☕','🍵','🥤','🍕','🍔','🌮','🍜','🍣','🍦','🍩','🍰','🥐','🍭','🍬'];
+        function createRisingEmoji() {
+            const bubble = document.createElement('div');
+            bubble.className = 'emoji-bubble';
+            bubble.textContent = foodEmojis[Math.floor(Math.random() * foodEmojis.length)];
+            bubble.style.left = (Math.random() * 85 + 5) + '%';
+            bubble.style.animationDuration = (6 + Math.random() * 3) + 's';
+            bubble.style.animationDelay = Math.random() * 1 + 's';
+            document.getElementById('risingEmojis').appendChild(bubble);
+            setTimeout(() => bubble.remove(), 10000);
+        }
+        setInterval(createRisingEmoji, 700);
+        for(let i = 0; i < 8; i++) setTimeout(createRisingEmoji, i * 300);
     </script>
-
 </body>
 
 </html>

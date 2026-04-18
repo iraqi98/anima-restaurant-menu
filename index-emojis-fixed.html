@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIMA CAFÉ & PIZZERIA - Fixed Emojis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <script src="data_v2.js"></script>
+    <style>
+.rising-emojis {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 120vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.emoji-bubble {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0;
+  animation: riseBottomToTop 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 0 transparent);
+  will-change: transform;
+}
+@keyframes riseBottomToTop {
+  0% {
+    bottom: -80px;
+    opacity: 0;
+    transform: translateX(0) rotate(0deg) scale(0.6);
+  }
+  10% {
+    opacity: 0.5;
+    transform: translateX(0) rotate(4deg) scale(1);
+  }
+  40%, 80% {
+    opacity: 0.3;
+  }
+  95% {
+    opacity: 0.1;
+
+    transform: translateX(60px) rotate(-6deg) scale(1.4);
+  }
+  100% {
+    bottom: 130vh;
+    opacity: 0;
+    transform: translateX(100px) rotate(0deg) scale(1.6);
+  }
+}
+    </style>
+    <style>
+/* باقي الـ CSS كما هو - اختصار للاختبار */
+body { font-family: 'Roboto', sans-serif; background: #01164B; color: #fff; padding: 100px 20px; text-align: center; }
+.logo { max-width: 250px; margin-bottom: 30px; }
+.menu-btn { background: rgba(255,255,255,0.1); border: 2px solid #fff; color: #fff; padding: 20px 40px; border-radius: 50px; font-size: 1.5em; cursor: pointer; }
+.top-navbar { position: fixed; top: 0; left: 0; width: 100%; height: 80px; background: rgba(1,22,75,0.9); z-index: 100; }
+    </style>
+</head>
+<body>
+    <div class="rising-emojis" id="risingEmojis"></div>
+    <header class="top-navbar">
+        <div style="padding: 20px; color: white; font-size: 18px;">📱 الإيموجيات العائمة اللطيفة - انتظر 2 ثواني لرؤيتها تصعد! ☕🍕🥤</div>
+    </header>
+    <img src="Anmialogo..png" alt="ANIMA Logo" class="logo">
+    <a href="menu.html" class="menu-btn">قائمة الطعام</a>
+    <script>
+console.log('🚀 بدء الإيموجيات العائمة...');
+const cuteEmojis = ['☕','🍵','🥤','🍕','🍔','🌮','🍜','🍨','🍦','🍩','🥐','🍭','🍬','🥛','🧋','🍓','🍉'];
+console.log('Emojis ready:', cuteEmojis.length, cuteEmojis);
+function createRisingEmoji() {
+  const bubble = document.createElement('div');
+  bubble.className = 'emoji-bubble';
+  bubble.textContent = cuteEmojis[Math.floor(Math.random() * cuteEmojis.length)];
+  console.log('Emoji created:', bubble.textContent);
+  bubble.style.left = (Math.random() * 95) + '%';
+  bubble.style.animationDuration = (6 + Math.random() * 3) + 's';
+  bubble.style.animationDelay = Math.random() * 1 + 's';
+  document.getElementById('risingEmojis').appendChild(bubble);
+  setTimeout(() => bubble.remove(), 10000);
+}
+// فوري + سريع
+for(let i = 0; i < 15; i++) setTimeout(createRisingEmoji, i * 150);
+setInterval(createRisingEmoji, 400 + Math.random() * 300);
+console.log('🎉 الإيموجيات بدأت - تحقق من الصفحة!');
+    </script>
+</body>
+</html>
