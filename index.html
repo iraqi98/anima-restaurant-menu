@@ -157,14 +157,23 @@ padding: 75px 20px 75px;
             left: 0;
             width: 100%;
             height: 75px;
-            background: rgba(1, 22, 75, 0.85);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(1, 22, 75, 0.95);
             z-index: 1000;
             display: flex;
             align-items: center;
             padding: 0 20px;
+        }
+
+        /* Mobile Optimization: Remove heavy filters */
+        @media (max-width: 768px) {
+            .top-navbar, .menu-btn, .social-icon {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            .top-navbar { background: #01164B; }
+            .menu-btn { background: rgba(255, 255, 255, 0.15); }
+            .social-icon { background: rgba(255, 255, 255, 0.12); }
+            #parallax-wrapper { margin-top: 15vh !important; }
         }
 
         .navbar-content {
@@ -549,6 +558,7 @@ padding: 75px 20px 75px;
         // Parallax
         const parallaxWrapper = document.getElementById('parallax-wrapper');
         document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return; // Disable parallax on mobile
             const x = (e.clientX / window.innerWidth - 0.5) * 20;
             const y = (e.clientY / window.innerHeight - 0.5) * 20;
             parallaxWrapper.style.transform = `translate(${x}px, ${y}px)`;

@@ -54,14 +54,23 @@
             left: 0;
             width: 100%;
             height: 75px;
-            background: rgba(1, 22, 75, 0.85);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(1, 22, 75, 0.95);
             z-index: 1000;
             display: flex;
             align-items: center;
             padding: 0 20px;
+        }
+
+        /* Mobile Optimization: Remove heavy filters */
+        @media (max-width: 768px) {
+            .top-navbar, .category-card, .divider-card, .order-toast, .spotlight-overlay {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            .top-navbar { background: #01164B; }
+            .category-card { background: rgba(255, 255, 255, 0.08); }
+            .divider-card { background: #ffffff; }
+            .order-toast { background: rgba(20, 30, 60, 0.95); }
         }
 
         .navbar-content {
@@ -876,6 +885,7 @@
 
                 // 3D Tilt Logic
                 card.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 768) return; // Disable tilt on mobile
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
@@ -1061,13 +1071,7 @@
         });
 
         document.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                const now = Date.now();
-                if (now - lastTrailTime > 40) {
-                    createTrail(e.touches[0].clientX, e.touches[0].clientY);
-                    lastTrailTime = now;
-                }
-            }
+            // Disabled on mobile for performance
         }, { passive: true });
 
         // Optimized Rising Emojis Logic
