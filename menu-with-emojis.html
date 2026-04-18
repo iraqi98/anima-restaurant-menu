@@ -192,7 +192,7 @@
             scroll-margin-top: 100px;
             animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
             transform-style: preserve-3d;
-            will-change: transform;
+            will-change: transform, opacity, box-shadow;
         }
 
         .category-card:active {
@@ -460,6 +460,7 @@
             box-shadow: 0 0 15px #ffbc00, 0 0 25px #ffbc00;
             animation: trailFade 0.4s linear forwards;
             z-index: 9998;
+            will-change: transform, opacity;
         }
 
         @keyframes trailFade {
@@ -647,6 +648,48 @@
             background: rgba(255, 255, 255, 0.2);
             transform: rotate(90deg);
         }
+
+        /* Optimized Rising Emojis */
+        .rising-emojis {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .emoji-bubble {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            animation: riseBottomToTop 10s linear infinite;
+            pointer-events: none;
+            will-change: transform, opacity;
+            filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes riseBottomToTop {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg) scale(0.5);
+            }
+            10% {
+                opacity: 0.4;
+                transform: translateX(0) rotate(5deg) scale(1);
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                bottom: 110vh;
+                opacity: 0;
+                transform: translateX(30px) rotate(-5deg) scale(1.2);
+            }
+        }
     </style>
 </head>
 
@@ -668,6 +711,9 @@
         <div class="wave wave2"></div>
         <div class="wave"></div>
     </div>
+
+    <!-- Rising Emojis Container -->
+    <div class="rising-emojis" id="risingEmojis"></div>
 
 
 
@@ -1008,7 +1054,7 @@
         let lastTrailTime = 0;
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
-            if (now - lastTrailTime > 20) { // Throttle to 50fps
+            if (now - lastTrailTime > 40) { // Throttle more (approx 25fps) for better performance
                 createTrail(e.clientX, e.clientY);
                 lastTrailTime = now;
             }
@@ -1017,12 +1063,31 @@
         document.addEventListener('touchmove', (e) => {
             if (e.touches.length > 0) {
                 const now = Date.now();
-                if (now - lastTrailTime > 20) {
+                if (now - lastTrailTime > 40) {
                     createTrail(e.touches[0].clientX, e.touches[0].clientY);
                     lastTrailTime = now;
                 }
             }
-        });
+        }, { passive: true });
+
+        // Optimized Rising Emojis Logic
+        const foodEmojis = ['🍕', '☕', '🥐', '🍝', '🍦', '🍰', '🍩', '🥤'];
+        function createRisingEmoji() {
+            const container = document.getElementById('risingEmojis');
+            if (!container || container.childElementCount > 15) return; // Limit number for performance
+
+            const bubble = document.createElement('div');
+            bubble.className = 'emoji-bubble';
+            bubble.textContent = foodEmojis[Math.floor(Math.random() * foodEmojis.length)];
+            bubble.style.left = (Math.random() * 90 + 5) + '%';
+            bubble.style.animationDuration = (8 + Math.random() * 4) + 's';
+            
+            container.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 12000);
+        }
+
+        setInterval(createRisingEmoji, 1500); // Slower spawn rate for better performance
+        for(let i = 0; i < 5; i++) setTimeout(createRisingEmoji, i * 1000);
 
 // Video background autoplay loop - no JS needed
 
