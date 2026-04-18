@@ -880,8 +880,6 @@
                 category.items.forEach(item => {
                     const menuItem = document.createElement('div');
                     menuItem.className = 'menu-item';
-                    menuItem.style.cursor = 'pointer';
-                    menuItem.onclick = () => showSpotlight(item, category.id);
 
                     if (item.image) {
                         const imgContainer = document.createElement('div');
