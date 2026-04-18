@@ -548,12 +548,13 @@
             background: #01164B;
             z-index: 999999;
             pointer-events: none;
-            transition: opacity 0.6s ease-out;
-            opacity: 1;
+            animation: fadeOutScreen 1s forwards;
+            animation-delay: 0.5s;
         }
 
-        .page-enter-transition.loaded {
-            opacity: 0;
+        @keyframes fadeOutScreen {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
         }
 
         /* Cinematic Spotlight Style */
@@ -1034,14 +1035,8 @@
 // Video background autoplay loop - no JS needed
 
         window.addEventListener('load', () => {
+            if (typeof renderMenu === 'function') renderMenu();
             initAudio();
-            setTimeout(() => {
-                const pageEnter = document.getElementById('page-enter');
-                if (pageEnter) {
-                    pageEnter.classList.add('loaded');
-                    setTimeout(() => pageEnter.remove(), 600);
-                }
-            }, 100);
         });
 
     </script>
