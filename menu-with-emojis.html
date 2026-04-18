@@ -940,26 +940,59 @@
 
         // Music Logic
         let isPlaying = false;
-        function toggleMusic() {
-            const audio = document.getElementById('ambient-audio');
-            const btn = document.getElementById('music-btn');
-            const waves = document.getElementById('music-waves');
+        const audio = document.getElementById('ambient-audio');
+        const btn = document.getElementById('music-btn');
+        const waves = document.getElementById('music-waves');
+
+        function updateMusicUI() {
             if (isPlaying) {
-                audio.pause();
-                btn.innerHTML = '<i class="fas fa-music"></i>';
-                btn.style.color = '#fff';
-                btn.style.borderColor = 'rgba(255,255,255,0.2)';
-                btn.style.animation = 'none';
-                waves.classList.remove('playing');
-            } else {
-                audio.play().catch(e => console.log('Playback prevented', e));
                 btn.innerHTML = '<i class="fas fa-volume-up"></i>';
                 btn.style.color = '#ffbc00';
                 btn.style.borderColor = '#ffbc00';
                 btn.style.animation = 'pulseGlow 2s infinite';
                 waves.classList.add('playing');
+            } else {
+                btn.innerHTML = '<i class="fas fa-music"></i>';
+                btn.style.color = '#fff';
+                btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                btn.style.animation = 'none';
+                waves.classList.remove('playing');
             }
-            isPlaying = !isPlaying;
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                localStorage.setItem('anima_music_enabled', 'false');
+            } else {
+                audio.play().catch(e => console.log('Playback prevented', e));
+                isPlaying = true;
+                localStorage.setItem('anima_music_enabled', 'true');
+            }
+            updateMusicUI();
+        }
+
+        // Auto-play attempt
+        function attemptAutoplay() {
+            const musicEnabled = localStorage.getItem('anima_music_enabled') !== 'false'; // Default to true if not set
+            if (musicEnabled) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updateMusicUI();
+                }).catch(e => {
+                    console.log('Autoplay blocked by browser. Waiting for user interaction.');
+                    // If blocked, we wait for the first click anywhere to start
+                    const startOnInteraction = () => {
+                        audio.play().then(() => {
+                            isPlaying = true;
+                            updateMusicUI();
+                            document.removeEventListener('click', startOnInteraction);
+                        });
+                    };
+                    document.addEventListener('click', startOnInteraction);
+                });
+            }
         }
 
         // Glowing Touch Trail Logic
@@ -994,6 +1027,7 @@
 // Video background autoplay loop - no JS needed
 
         window.addEventListener('load', () => {
+            attemptAutoplay();
             setTimeout(() => {
                 const pageEnter = document.getElementById('page-enter');
                 if (pageEnter) {
