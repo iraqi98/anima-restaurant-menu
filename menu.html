@@ -1007,9 +1007,13 @@
 
                     document.addEventListener('click', unlockAudio);
                     document.addEventListener('touchstart', unlockAudio, { passive: true });
+                    document.addEventListener('scroll', unlockAudio, { once: true, passive: true });
                 });
             }
         }
+        
+        // Start autoplay attempt as soon as possible
+        attemptAutoplay();
 
         // Glowing Touch Trail Logic
         function createTrail(x, y) {
