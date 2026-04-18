@@ -37,63 +37,7 @@
     </style>
 
 
-    <!-- Rising Emojis + Waves Style -->
-    <style>
-        .wave-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 180px;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            pointer-events: none;
-            overflow: hidden;
-        }
 
-        .wave-container.playing {
-            opacity: 0.4 !important;
-        }
-
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23ffbc00"/></svg>') repeat-x;
-            background-size: 50% 100%;
-            animation: waveMove 3s linear infinite;
-        }
-
-        .wave2 {
-            bottom: -10px;
-            opacity: 0.5;
-            animation-duration: 5s;
-            animation-direction: reverse;
-            filter: hue-rotate(20deg);
-        }
-
-        .wave3 {
-            bottom: -20px;
-            opacity: 0.3;
-            animation-duration: 7s;
-            filter: hue-rotate(-20deg);
-        }
-
-        @keyframes waveMove {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-
-    </style>
     <!-- Original styles -->
     <style>
         * {
@@ -528,40 +472,7 @@ padding: 75px 20px 75px;
             }
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 95px 8px;
-            }
 
-            .social-footer {
-                padding: 30px 15px;
-                gap: 15px;
-            }
-
-            .social-icon {
-                width: 55px;
-                height: 55px;
-                font-size: 1.3rem;
-            }
-
-            .top-navbar {
-                padding: 0 12px;
-            }
-
-            .nav-buttons {
-                gap: 8px;
-            }
-
-            .menu-button {
-                padding: 8px 14px;
-                font-size: 0.8em;
-            }
-
-            #music-btn {
-                width: 34px;
-                height: 34px;
-            }
-        }
     </style>
 </head>
 
@@ -572,19 +483,11 @@ padding: 75px 20px 75px;
             <source src="background-video.mp4" type="video/mp4">
         </video>
     </div>
-    <div class="wave-container" id="music-waves">
-        <div class="wave wave3"></div>
-        <div class="wave wave2"></div>
-        <div class="wave"></div>
-    </div>
     <header class="top-navbar">
         <div class="navbar-content">
             <!-- Logo removed -->
             <div class="spacer"></div>
             <div class="nav-buttons">
-                <button id="music-btn" class="menu-button" onclick="toggleMusic()" title="Play Ambience">
-                    <i class="fas fa-music"></i>
-                </button>
                 <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
             </div>
         </div>
@@ -593,12 +496,6 @@ padding: 75px 20px 75px;
     <div id="parallax-wrapper">
         <a href="menu-with-emojis.html" class="menu-btn" id="main-menu-btn">View Menu</a>
     </div>
-
-    <audio id="ambient-audio" loop muted playsinline>
-        <source
-            src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
-            type="audio/mpeg">
-    </audio>
 
     <footer class="social-footer">
         <a href="https://www.instagram.com/anima.iqq?igsh=bGExN2oycjc3aTl4" class="social-icon instagram-interactive"
@@ -649,81 +546,6 @@ padding: 75px 20px 75px;
             applyLanguage();
         }
 
-        // Music Autoplay + Toggle
-        let isPlaying = false;
-        const audio = document.getElementById('ambient-audio');
-        const btn = document.getElementById('music-btn');
-        const waves = document.getElementById('music-waves');
-
-        function updateMusicButton() {
-            if (isPlaying) {
-                btn.innerHTML = `<div class="record-player-icon playing">
-                    <div class="vinyl"></div>
-                    <div class="tonearm"></div>
-                </div>`;
-                btn.style.color = '#ffbc00';
-                btn.style.borderColor = '#ffbc00';
-                waves.classList.add('playing');
-            } else {
-                btn.innerHTML = `<div class="record-player-icon">
-                    <div class="vinyl"></div>
-                    <div class="tonearm"></div>
-                </div>`;
-                btn.style.color = '#fff';
-                btn.style.borderColor = 'rgba(255,255,255,0.2)';
-                waves.classList.remove('playing');
-            }
-        }
-
-        async function startAudio(unmute = false) {
-            if (unmute) {
-                audio.muted = false;
-            }
-            try {
-                await audio.play();
-                isPlaying = true;
-            } catch (error) {
-                console.log('Playback prevented', error);
-                isPlaying = false;
-            }
-            updateMusicButton();
-        }
-
-        function toggleMusic() {
-            if (isPlaying && !audio.paused) {
-                audio.pause();
-                isPlaying = false;
-                updateMusicButton();
-            } else {
-                startAudio(true);
-            }
-        }
-
-        function attemptMutedAutoplay() {
-            audio.muted = true;
-            audio.play().then(() => {
-                isPlaying = true;
-                updateMusicButton();
-            }).catch(() => {
-                isPlaying = false;
-            });
-        }
-
-        attemptMutedAutoplay();
-
-        // Resume on first interaction by unmuting and ensuring playback
-        const resumeAfterInteraction = () => {
-            startAudio(true);
-            document.removeEventListener('click', resumeAfterInteraction);
-        };
-        document.addEventListener('click', resumeAfterInteraction);
-
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden && !isPlaying) {
-                startAudio();
-            }
-        });
-
         // Parallax
         const parallaxWrapper = document.getElementById('parallax-wrapper');
         document.addEventListener('mousemove', (e) => {
@@ -764,8 +586,6 @@ padding: 75px 20px 75px;
                 window.location.href = 'menu-with-emojis.html';
             }, 600);
         });
-
-// Video background autoplay loop - no JS needed for rising effect
     </script>
 
 </body>
