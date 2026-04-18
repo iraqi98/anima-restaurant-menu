@@ -98,7 +98,7 @@
 
 body {
             font-family: 'Roboto', 'Cairo', sans-serif;
-            background: radial-gradient(circle at center, #01247d 0%, #01164B 100%);
+            background: #01164B;
             color: #fff;
             line-height: 1.6;
             direction: ltr;
@@ -486,6 +486,12 @@ body {
 </head>
 
 <body>
+    <!-- Animated Video Background (Programmatically Trimmmed to 2s) -->
+    <div class="rising-emojis" id="risingEmojis">
+        <video id="bg-video" autoplay loop muted playsinline>
+            <source src="background-video.mp4" type="video/mp4">
+        </video>
+    </div>
     <header class="top-navbar">
         <div class="navbar-content">
             <!-- Logo removed -->
@@ -590,6 +596,16 @@ body {
                 window.location.href = 'menu-with-emojis.html';
             }, 600);
         });
+
+        // Loop video every 2 seconds
+        const bgVideo = document.getElementById('bg-video');
+        if (bgVideo) {
+            bgVideo.addEventListener('timeupdate', function() {
+                if (this.currentTime >= 2) {
+                    this.currentTime = 0;
+                }
+            });
+        }
     </script>
 
 </body>
