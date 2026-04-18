@@ -48,54 +48,6 @@
             z-index: -1;
         }
 
-        /* Dynamic Atmospheric Backgrounds */
-        .atmospheric-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            transition: opacity 1.5s ease;
-            overflow: hidden;
-        }
-
-        /* Particle base */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-        }
-
-        /* --- FIRE EMBERS (For Food) --- */
-        .bg-state-embers .particle {
-            background: orange;
-            filter: blur(2px);
-            box-shadow: 0 0 10px orange, 0 0 20px red;
-            animation: riseEmbers 4s infinite linear;
-        }
-
-        @keyframes riseEmbers {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 0.6; }
-            100% { transform: translateY(-20vh) translateX(50px) scale(1); opacity: 0; }
-        }
-
-        /* --- COOL BUBBLES (For Drinks) --- */
-        .bg-state-bubbles .particle {
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: riseBubbles 6s infinite ease-in;
-        }
-
-        @keyframes riseBubbles {
-            0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
-            50% { opacity: 0.3; }
-            100% { transform: translateY(-10vh) translateX(-30px) scale(1.2); opacity: 0; }
-        }
-
         .top-navbar {
             position: fixed;
             top: 0;
@@ -711,7 +663,6 @@
         </div>
     </header>
 
-    <div class="atmospheric-bg" id="atmospheric-bg"></div>
     <div class="wave-container" id="music-waves">
         <div class="wave wave3"></div>
         <div class="wave wave2"></div>
@@ -966,51 +917,8 @@
             });
         }
 
-        // Atmospheric Background Controller
-        function initAtmosphericBG() {
-            const bgContainer = document.getElementById('atmospheric-bg');
-            const particleCount = 25;
-            
-            // Create particles
-            for (let i = 0; i < particleCount; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.width = p.style.height = (Math.random() * 6 + 2) + 'px';
-                p.style.animationDelay = Math.random() * 5 + 's';
-                p.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                bgContainer.appendChild(p);
-            }
-
-            const observerOptions = {
-                root: null,
-                threshold: 0.3
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const categoryId = entry.target.id.replace('card-', '');
-                        const foodCategories = ['pizza'];
-                        const drinkCategories = ['coffee-drinks', 'cold-drinks', 'signature-drinks'];
-
-                        if (foodCategories.includes(categoryId)) {
-                            bgContainer.className = 'atmospheric-bg bg-state-embers';
-                        } else if (drinkCategories.includes(categoryId)) {
-                            bgContainer.className = 'atmospheric-bg bg-state-bubbles';
-                        } else {
-                            bgContainer.className = 'atmospheric-bg';
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.category-card').forEach(card => observer.observe(card));
-        }
-
         window.addEventListener('load', () => {
             applyLanguage();
-            initAtmosphericBG(); // Start the atmosphere
             setTimeout(() => {
                 document.getElementById('order-toast').classList.add('show');
             }, 2000);
