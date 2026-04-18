@@ -986,22 +986,27 @@
 
         // Auto-play attempt
         function attemptAutoplay() {
-            const musicEnabled = localStorage.getItem('anima_music_enabled') !== 'false'; // Default to true if not set
+            const musicEnabled = localStorage.getItem('anima_music_enabled') !== 'false';
             if (musicEnabled) {
                 audio.play().then(() => {
                     isPlaying = true;
                     updateMusicUI();
                 }).catch(e => {
-                    console.log('Autoplay blocked by browser. Waiting for user interaction.');
-                    // If blocked, we wait for the first click anywhere to start
-                    const startOnInteraction = () => {
+                    console.log('Autoplay blocked. Waiting for interaction.');
+                    
+                    // Comprehensive interaction listener for mobile
+                    const unlockAudio = () => {
                         audio.play().then(() => {
                             isPlaying = true;
                             updateMusicUI();
-                            document.removeEventListener('click', startOnInteraction);
-                        });
+                            // Remove all listeners once unlocked
+                            document.removeEventListener('click', unlockAudio);
+                            document.removeEventListener('touchstart', unlockAudio);
+                        }).catch(err => console.log('Unlock failed', err));
                     };
-                    document.addEventListener('click', startOnInteraction);
+
+                    document.addEventListener('click', unlockAudio);
+                    document.addEventListener('touchstart', unlockAudio, { passive: true });
                 });
             }
         }
