@@ -950,26 +950,6 @@
         });
 
         // Music Logic
-        let isPlaying = false;
-        const audio = new Audio('https://cdn.animaapp.com/projects/65f0e34c2b9a7d0012345678/ambient.mp3');
-        const musicBtn = document.getElementById('music-btn');
-        const waves = document.getElementById('music-waves');
-
-        function updateMusicUI() {
-            if (isPlaying) {
-                btn.style.borderColor = '#ffbc00';
-                btn.style.animation = 'pulseGlow 2s infinite';
-                waves.classList.add('playing');
-            } else {
-                btn.innerHTML = '<i class="fas fa-music"></i>';
-                btn.style.color = '#fff';
-                btn.style.borderColor = 'rgba(255,255,255,0.2)';
-                btn.style.animation = 'none';
-                waves.classList.remove('playing');
-            }
-        }
-
-        // Music Logic
         const audio = document.getElementById('ambient-audio');
         const musicBtn = document.getElementById('music-btn');
         const waves = document.getElementById('music-waves');
