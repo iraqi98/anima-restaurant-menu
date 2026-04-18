@@ -1007,7 +1007,6 @@
             }
         }
 
-        window.addEventListener('load', initAudio);
 
         // Glowing Touch Trail Logic
         function createTrail(x, y) {
@@ -1035,14 +1034,14 @@
 // Video background autoplay loop - no JS needed
 
         window.addEventListener('load', () => {
-            attemptAutoplay();
+            initAudio();
             setTimeout(() => {
                 const pageEnter = document.getElementById('page-enter');
                 if (pageEnter) {
                     pageEnter.classList.add('loaded');
                     setTimeout(() => pageEnter.remove(), 600);
                 }
-            }, 50);
+            }, 100);
         });
 
     </script>
