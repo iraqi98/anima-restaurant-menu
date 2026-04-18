@@ -681,9 +681,9 @@
 
 
 
-    <audio id="ambient-audio" loop>
+    <audio id="ambient-audio" loop preload="auto">
         <source
-            src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+            src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
             type="audio/mpeg">
     </audio>
 
@@ -951,14 +951,12 @@
 
         // Music Logic
         let isPlaying = false;
-        const audio = document.getElementById('ambient-audio');
-        const btn = document.getElementById('music-btn');
+        const audio = new Audio('https://cdn.animaapp.com/projects/65f0e34c2b9a7d0012345678/ambient.mp3');
+        const musicBtn = document.getElementById('music-btn');
         const waves = document.getElementById('music-waves');
 
         function updateMusicUI() {
             if (isPlaying) {
-                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                btn.style.color = '#ffbc00';
                 btn.style.borderColor = '#ffbc00';
                 btn.style.animation = 'pulseGlow 2s infinite';
                 waves.classList.add('playing');
@@ -972,14 +970,14 @@
         }
 
         function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                isPlaying = false;
-                localStorage.setItem('anima_music_enabled', 'false');
-            } else {
+            if (audio.paused) {
                 audio.play().catch(e => console.log('Playback prevented', e));
                 isPlaying = true;
                 localStorage.setItem('anima_music_enabled', 'true');
+            } else {
+                audio.pause();
+                isPlaying = false;
+                localStorage.setItem('anima_music_enabled', 'false');
             }
             updateMusicUI();
         }
@@ -994,14 +992,13 @@
                 }).catch(e => {
                     console.log('Autoplay blocked. Waiting for interaction.');
                     
-                    // Comprehensive interaction listener for mobile
                     const unlockAudio = () => {
                         audio.play().then(() => {
                             isPlaying = true;
                             updateMusicUI();
-                            // Remove all listeners once unlocked
                             document.removeEventListener('click', unlockAudio);
                             document.removeEventListener('touchstart', unlockAudio);
+                            document.removeEventListener('scroll', unlockAudio);
                         }).catch(err => console.log('Unlock failed', err));
                     };
 
