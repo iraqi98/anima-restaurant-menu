@@ -97,7 +97,7 @@
             }
         }
 
-body {
+        body {
             font-family: 'Roboto', 'Cairo', sans-serif;
             background: #01164B;
             color: #fff;
@@ -167,14 +167,29 @@ body {
 
         /* Mobile Optimization: Remove heavy filters */
         @media (max-width: 768px) {
-            .top-navbar, .menu-btn, .social-icon {
+
+            .top-navbar,
+            .menu-btn,
+            .social-icon {
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
             }
-            .top-navbar { background: #01164B; }
-            .menu-btn { background: rgba(255, 255, 255, 0.15); }
-            .social-icon { background: rgba(255, 255, 255, 0.12); }
-            #parallax-wrapper { margin-top: 15vh !important; }
+
+            .top-navbar {
+                background: #01164B;
+            }
+
+            .menu-btn {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .social-icon {
+                background: rgba(255, 255, 255, 0.12);
+            }
+
+            #parallax-wrapper {
+                margin-top: 15vh !important;
+            }
         }
 
         .navbar-content {
@@ -481,8 +496,6 @@ body {
                 transform: rotate(360deg);
             }
         }
-
-
     </style>
 </head>
 
@@ -583,6 +596,12 @@ body {
             const x = rect.left + rect.width / 2;
             const y = rect.top + rect.height / 2;
 
+            try {
+                localStorage.setItem('anima_music_autoplay_request', 'true');
+            } catch (err) {
+                console.warn('Unable to persist autoplay request', err);
+            }
+
             const transition = document.createElement('div');
             transition.className = 'circle-transition';
             transition.style.clipPath = `circle(0% at ${x}px ${y}px)`;
@@ -601,7 +620,7 @@ body {
         // Loop video every 2 seconds
         const bgVideo = document.getElementById('bg-video');
         if (bgVideo) {
-            bgVideo.addEventListener('timeupdate', function() {
+            bgVideo.addEventListener('timeupdate', function () {
                 if (this.currentTime >= 2) {
                     this.currentTime = 0;
                 }
