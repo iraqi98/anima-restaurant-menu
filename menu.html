@@ -450,7 +450,7 @@
         /* Music & Trail CSS */
         @keyframes pulseGlow {
             0% {
-                box-shadow: 0 0 0 0 rgba(255, 188, 0, 0.5);
+box-shadow: 0 0 0 0 rgba(248, 250, 252, 0.6);
             }
 
             70% {
@@ -524,7 +524,7 @@
             left: 0;
             width: 200%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23ffbc00"/></svg>') repeat-x;
+background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 Q 250 0 500 50 T 1000 50 L 1000 100 L 0 100 Z" fill="%23f8fafc"/></svg>') repeat-x;
             background-size: 50% 100%;
             animation: waveMove 3s linear infinite;
         }
@@ -534,14 +534,14 @@
             opacity: 0.5;
             animation-duration: 5s;
             animation-direction: reverse;
-            filter: hue-rotate(20deg);
+filter: brightness(0.9) contrast(1.1); /* Light gray tint */
         }
 
         .wave3 {
             bottom: -20px;
             opacity: 0.3;
             animation-duration: 7s;
-            filter: hue-rotate(-20deg);
+filter: brightness(0.85) contrast(1.2); /* Lighter gray tint */
         }
 
         @keyframes waveMove {
