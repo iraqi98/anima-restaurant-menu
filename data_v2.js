@@ -33,27 +33,22 @@ const ANIMA_DATA = {
   categories: [
     {
       id: 'coffee-drinks',
-      title: { en: 'Coffee Drinks', ar: 'مشاريب القهوة' },
+      title: { en: 'Hot Drinks', ar: 'المشروبات الساخنة' },
       items: [
         { name: { en: 'Espresso', ar: 'اسبريسو' }, price: '4,000 IQD', description: 'الجوهر. بدون إضافات، بدون تعقيد. اللي يعرفه يكتفي بي.', image: 'drinks/espresso.jpg' },
-        { name: { en: 'Flat White', ar: 'فلات وايت' }, price: '5,000 IQD', image: '' },
-        { name: { en: 'Latte', ar: 'لاتيه' }, price: '5,500 IQD', image: '' },
-        { name: { en: 'Iced Latte', ar: 'ايس لاتيه' }, price: '5,500 IQD', description: 'ناعم، بارد، يمشي وياك بأي وقت. الكلاسيك اللي ما يخيب.', image: 'drinks/iced-latte.jpg' },
-        { name: { en: 'Spanish Latte', ar: 'سبانش لاتيه' }, price: '6,000 IQD', image: '' },
-        { name: { en: 'Americano', ar: 'امريكانو' }, price: '5,000 IQD', image: '' },
+
+
+
+
+{ name: { en: 'Americano', ar: 'امريكانو' }, price: '5,000 IQD', description: 'امريكانو كلاسيكي، إسبريسو مع ماء ساخن. قهوة طويلة تناسب اللي يبي يمد الصبح.', image: 'drinks/امريكانو.jpg' },
         { name: { en: 'Cortado', ar: 'كورتادو' }, price: '5,000 IQD', description: 'نص إسبريسو، نص حليب. لما تريد تركيز بدون مرارة زايدة.', image: 'drinks/cortado.jpg' },
-        { name: { en: 'Cappuccino', ar: 'كابتشينو' }, price: '5,500 IQD', image: '' },
-        { name: { en: 'Caramel Latte', ar: 'كراميل لاتيه' }, price: '6,000 IQD', description: 'كراميل، حليب، قهوة. الصبح اللي يستاهل تقوم علموده.', image: 'drinks/caramel-latte.jpg' },
-        { name: { en: 'Hot Chocolate', ar: 'هوت شوكلت' }, price: '5,500 IQD', image: '' },
-        { name: { en: 'Iraqi Tea', ar: 'شاي عراقي' }, price: '1,500 IQD', image: '' },
-        { name: { en: 'Mocha Latte', ar: 'موكا لاتيه' }, price: '6,000 IQD', image: '' },
-        { name: { en: 'Turkish Coffee', ar: 'قهوة تركية' }, price: '4,000 IQD', image: '' },
-        { name: { en: 'Hibiscus Iced Tea', ar: 'شاي كركديه بارد' }, price: '6,000 IQD', description: 'شاي كركديه بارد على ثلج. اللون أحمر، الطعم حامض، المزاج صح.', image: 'drinks/hibiscus.jpg' },
-        { name: { en: 'Peach Iced Tea', ar: 'شاي خوخ بارد' }, price: '6,000 IQD', description: 'خوخ وشاي وثلج. يخبل مثل يوم ما عندك شغل بي.', image: 'drinks/peach-iced-tea.jpg' },
-        { name: { en: 'Ice Mocha Latte', ar: 'ايس موكا لاتيه' }, price: '6,000 IQD', image: '' },
-        { name: { en: 'Ice Caramel Latte', ar: 'ايس كراميل لاتيه' }, price: '6,000 IQD', image: '' },
-        { name: { en: 'Spanish Latte Ice', ar: 'ايس سبانش لاتيه' }, price: '6,000 IQD', image: '' },
-        { name: { en: 'Ice Americano', ar: 'ايس امريكانو' }, price: '5,000 IQD', image: '' }
+{ name: { en: 'Cappuccino', ar: 'كابتشينو' }, price: '5,500 IQD', description: 'كابتشينو إيطالي تقليدي، إسبريسو مع رغوة حليب كثيفة. الرغوة اللي تخبل.', image: 'drinks/كابتشينو.jpg' },
+        { name: { en: 'Caramel Latte', ar: 'كراميل لاتيه' }, price: '6,000 IQD', description: 'كراميل، حليب، قهوة. الصبح اللي يستاهل تقوم علموده.', image: 'drinks/كراميل لاتيه.jpg' },
+{ name: { en: 'Hot Chocolate', ar: 'هوت شوكلت' }, price: '5,500 IQD', description: 'هوت شوكلت غني وكريمي، مثالي لليالي البرد. شوكولاتة حقيقية مو مسحوق.', image: 'drinks/هوت شوكلت.jpg' },
+{ name: { en: 'Iraqi Tea', ar: 'شاي عراقي' }, price: '1,500 IQD', description: 'شاي عراقي أصلي، بالنعناع أو النعيم. اللي يبدي اليوم صح.', image: '' },
+{ name: { en: 'Mocha Latte', ar: 'موكا لاتيه' }, price: '6,000 IQD', description: 'موكا لاتيه شوكولاتي، قهوة مع شوكولاتة ساخنة. للي يبي حلاوة مع قهوة.', image: 'drinks/موكا لاتيه.jpg' },
+{ name: { en: 'Turkish Coffee', ar: 'قهوة تركية' }, price: '4,000 IQD', description: 'قهوة تركية أصلية، مفلترة بالرصاص. الروح العثمانية بكوب صغير.', image: 'drinks/قهوة تركية .jpg' },
+        { name: { en: 'V60 Specialty Coffee', ar: 'قهوة مختصة V60' }, price: '8,000 IQD', description: 'قهوة مختصة V60، طريقة تحضير يدوية بفلتر مخروطي. نكهة نقية ومتوازنة.', image: 'drinks/v60.jpg' },
       ]
     },
     {
@@ -66,10 +61,19 @@ const ANIMA_DATA = {
       ]
     },
     {
-      id: 'specialty-coffee',
-      title: { en: 'Specialty Coffee', ar: 'القهوة المختصة' },
+      id: 'cold-drinks',
+      title: { en: 'Cold Drinks', ar: 'المشروبات الباردة' },
       items: [
-        { name: { en: 'V60', ar: 'في 60' }, price: '7,000 IQD', description: 'قهوة مختصة محضرة يدوياً للحصول على نكهة نقية.', image: 'drinks/v60.jpg' }
+{ name: { en: 'Iced Americano', ar: 'ايس امريكانو' }, price: '5,000 IQD', description: 'ايس امريكانو بارد، إسبريسو مع ثلج وماء بارد. للحر الشديد.', image: 'drinks/امريكانو ايس .jpg' },
+{ name: { en: 'Ice Mocha Latte', ar: 'ايس موكا لاتيه' }, price: '6,000 IQD', description: 'ايس موكا لاتيه، شوكولاتة مثلجة مع قهوة. حلو وبارد يبرد الجو.', image: 'drinks/iced-mocha.jpg' },
+
+{ name: { en: 'Ice Caramel Latte', ar: 'ايس كراميل لاتيه' }, price: '6,000 IQD', description: 'ايس كراميل لاتيه، كراميل مثلج مع قهوة. حلاوة باردة تخبل.', image: 'drinks/سولدت كرمل.jpg' },
+        { name: { en: 'Iced Latte', ar: 'ايس لاتيه' }, price: '5,500 IQD', description: 'ناعم، بارد، يمشي وياك بأي وقت. الكلاسيك اللي ما يخيب.', image: 'drinks/iced-latte.jpg' },
+{ name: { en: 'Spanish Latte Ice', ar: 'ايس سبانش لاتيه' }, price: '6,000 IQD', description: 'ايس سبانش لاتيه بارد، حليب مكثف مثلج مع إسبريسو. نكهة سبانية باردة.', image: 'drinks/spanish-latte.jpg' },
+        { name: { en: 'Flat White', ar: 'فلات وايت' }, price: '5,000 IQD', image: 'drinks/spanish-latte.jpg', description: 'فلات وايت ناعم وقوي. إسبريسو مزدوج برغوة مثالية، متوازن بدون إفراط.' },
+        { name: { en: 'Spanish Latte', ar: 'سبانش لاتيه' }, price: '6,000 IQD', image: 'drinks/spanish-latte.jpg', description: 'حليب مكثف حلو مع إسبريسو قوي. نكهة إسبانية حلوة ومختلفة تخليك تطلبها مرة ثانية.' },
+        { name: { en: 'Hibiscus Iced Tea', ar: 'شاي كركديه بارد' }, price: '6,000 IQD', description: 'شاي كركديه بارد على ثلج. اللون أحمر، الطعم حامض، المزاج صح.', image: 'drinks/hibiscus.jpg' },
+        { name: { en: 'Peach Iced Tea', ar: 'شاي خوخ بارد' }, price: '6,000 IQD', description: 'خوخ وشاي وثلج. يخبل مثل يوم ما عندك شغل بي.', image: 'drinks/peach-iced-tea.jpg' }
       ]
     },
     {
@@ -86,7 +90,7 @@ const ANIMA_DATA = {
       items: [
         { name: { en: 'Mango Smoothie', ar: 'مانجو سموذي' }, price: '6,000 IQD', description: 'بس مانجو بارد. النوع اللي يخليك تتذكر الشتا حتى بالصيف.', image: 'drinks/mango-smoothie.jpg' },
         { name: { en: 'Strawberry Smoothie', ar: 'فراولة سموذي' }, price: '6,000 IQD', description: 'فراولة طازجة، ما تحتاج تسأل أكثر. الجواب بالكوب.', image: 'drinks/strawberry-smoothie.jpg' },
-        { name: { en: 'Orange Juice', ar: 'عصير برتقال' }, price: '5,000 IQD', image: '' }
+{ name: { en: 'Orange Juice', ar: 'عصير برتقال' }, price: '5,000 IQD', description: 'عصير برتقال طازج، فيتامين C بكل رشفة. صحي ومنعش للصبح.', image: '' }
       ]
     },
     {
@@ -105,7 +109,7 @@ const ANIMA_DATA = {
       id: 'fold',
       title: { en: 'Fold', ar: 'فولد' },
       items: [
-        { name: { en: 'Chicken Fold', ar: 'فولد دجاج' }, price: '11,000 IQD', description: 'دجاج متبّل بعجينة بيتزا ساخنة. الساندويچ اللي قرر ما يكون عادي.', image: 'food/chicken-fold.jpg' },
+        { name: { en: 'Chicken Fold', ar: 'فولد دجاج' }, price: '11,000 IQD', description: 'دجاج متبّل بعجينة بيتزا ساخنة. الساندويچ اللي قرر ما يكون عادي.', image: 'food/فولد دجاج.jpg' },
         { name: { en: 'Potatoes Fold', ar: 'فولد بطاطا' }, price: '8,000 IQD', description: 'بطاطا داخل عجينة ساخنة. بسيط ومقنع، مثل أفضل القرارات.', image: 'food/potatoes-fold.jpg' },
         { name: { en: 'Burrata Fold', ar: 'فولد بوراتا' }, price: '12,000 IQD', description: 'جبن بوراتا طرية بعجينة بيتزا. اوتفت العيد ببساطة.', image: 'food/burrata-fold.jpg' },
         { name: { en: 'Turkey Fold', ar: 'فولد حبش' }, price: '9,000 IQD', description: 'ديك رومي جبن وعجينة ساخنة.', image: 'food/turkey-fold.jpg' },
@@ -138,7 +142,12 @@ const ANIMA_DATA = {
     {
       id: 'sandwiches',
       title: { en: 'Sandwiches', ar: 'ساندويش' },
-      items: []
+      items: [
+        { name: { en: 'Turkey Cheese Sandwich', ar: 'ساندويش حبش بالجبن' }, image: 'food/ساندويش حبش بالجبن .jpg', description: 'ديك رومي مع جبن ذايب وخبز محمص. مثالي للوجبة السريعة.' },
+{ name: { en: 'Diet Sandwich', ar: 'ساندويش دايت' }, image: 'food/ساندويش دايت.jpg', description: 'ساندويش دايت مع دجاج مشوي، خضار طازج وصوص يوناني. خفيف ومشبع بدون ذنب.' },
+        { name: { en: 'BBQ Chicken Sandwich', ar: 'ساندويش دجاج برابكيو' }, image: 'food/ساندويش دجاج برابكيو.jpg', description: 'دجاج مشوي بصوص BBQ الحار والغني بالنكهة.' },
+        { name: { en: 'Caesar Sandwich', ar: 'ساندويش سيزر' }, image: 'food/ساندويش سيزر.jpg', description: 'صوص سيزر الكلاسيكي مع دجاج مشوي وخس مقرمش.' }
+      ]
     }
   ]
 };
