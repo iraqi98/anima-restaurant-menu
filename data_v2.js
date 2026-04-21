@@ -41,10 +41,10 @@ const ANIMA_DATA = {
         { name: { en: 'Cappuccino', ar: 'كابتشينو' }, price: '5,500 IQD', description: 'كابتشينو إيطالي تقليدي، إسبريسو مع رغوة حليب كثيفة. الرغوة اللي تخبل.', image: 'drinks/cappuccino.jpg' },
         { name: { en: 'Caramel Latte', ar: 'كراميل لاتيه' }, price: '6,000 IQD', description: 'كراميل، حليب، قهوة. الصبح اللي يستاهل تقوم علموده.', image: 'drinks/caramel-latte.jpg' },
         { name: { en: 'Hot Chocolate', ar: 'هوت شوكلت' }, price: '5,500 IQD', description: 'هوت شوكلت غني وكريمي، مثالي لليالي البرد. شوكولاتة حقيقية مو مسحوق.', image: 'drinks/hot-chocolate.jpg' },
-        { name: { en: 'Iraqi Tea', ar: 'شاي عراقي' }, price: '1,500 IQD', description: 'شاي عراقي أصلي، بالنعناع أو النعيم. اللي يبدي اليوم صح.', image: '' },
+        { name: { en: 'Iraqi Tea', ar: 'شاي عراقي' }, price: '1,500 IQD', description: 'شاي عراقي أصلي، بالنعناع أو النعيم. اللي يبدي اليوم صح.', image: 'drinks/americano.jpg' },
         { name: { en: 'Mocha Latte', ar: 'موكا لاتيه' }, price: '6,000 IQD', description: 'موكا لاتيه شوكولاتي، قهوة مع شوكولاتة ساخنة. للي يبي حلاوة مع قهوة.', image: 'drinks/mocha-latte.jpg' },
         { name: { en: 'Turkish Coffee', ar: 'قهوة تركية' }, price: '4,000 IQD', description: 'قهوة تركية أصلية، مفلترة بالرصاص. الروح العثمانية بكوب صغير.', image: 'drinks/turkish-coffee.jpg' },
-        { name: { en: 'V60 Specialty Coffee', ar: 'قهوة مختصة V60' }, price: '8,000 IQD', description: 'قهوة مختصة V60، طريقة تحضير يدوية بفلتر مخروطي. نكهة نقية ومتوازنة.', image: 'drinks/v60.jpg' },
+        { name: { en: 'V60 Specialty Coffee', ar: 'قهوة مختصة V60' }, price: '7,000 IQD', description: 'قهوة مختصة V60، طريقة تحضير يدوية بفلتر مخروطي. نكهة نقية ومتوازنة.', image: 'drinks/v60.jpg' },
       ]
     },
     {
@@ -126,22 +126,22 @@ const ANIMA_DATA = {
       id: 'desserts',
       title: { en: 'Desserts', ar: 'حلويات' },
       items: [
-        { name: { en: 'Brownies', ar: 'براونيز' }, price: '5,000 IQD', description: 'براونيز الشوكولاتة الغنية.', image: 'drinks/brownies.jpg' },
+        { name: { en: 'Brownies', ar: 'براونيز' }, price: '6,000 IQD', description: 'براونيز الشوكولاتة الغنية.', image: 'drinks/brownies.jpg' },
         { name: { en: 'Tart', ar: 'تارت' }, price: '6,000 IQD', description: 'تارت الفواكه الطازجة.', image: 'drinks/tart.jpg' },
         { name: { en: 'Tiramisu', ar: 'تيراميسو' }, price: '7,000 IQD', description: 'حلى التيراميسو الإيطالي.', image: 'drinks/tiramisu.jpg' },
         { name: { en: 'German Cake', ar: 'كيكة ألمانية' }, price: '6,500 IQD', description: 'كيكة ألمانية كلاسيكية.', image: 'drinks/german-cake.jpg' },
         { name: { en: 'Cheesecake', ar: 'تشيز كيك' }, price: '6,000 IQD', description: 'تشيز كيك كريمي.', image: 'drinks/cheesecake.jpg' },
-        { name: { en: 'San Sebastian', ar: 'سان سباستيان' }, price: '7,500 IQD', description: 'سـان سباستيان تشيز كيك.', image: 'drinks/san-sebastian.jpg' },
+        { name: { en: 'San Sebastian', ar: 'سان سباستيان' }, price: '6,000 IQD', description: 'سـان سباستيان تشيز كيك.', image: 'drinks/san-sebastian.jpg' },
       ]
     },
     {
       id: 'sandwiches',
       title: { en: 'Sandwiches', ar: 'ساندويش' },
       items: [
-        { name: { en: 'Turkey Cheese Sandwich', ar: 'ساندويش حبش بالجبن' }, image: 'food/turkey-cheese-sandwich.jpg', description: 'ديك رومي مع جبن ذايب وخبز محمص. مثالي للوجبة السريعة.' },
-        { name: { en: 'Diet Sandwich', ar: 'ساندويش دايت' }, image: 'food/diet-sandwich.jpg', description: 'ساندويش دايت مع دجاج مشوي، خضار طازج وصوص يوناني. خفيف ومشبع بدون ذنب.' },
-        { name: { en: 'BBQ Chicken Sandwich', ar: 'ساندويش دجاج برابكيو' }, image: 'food/bbq-chicken-sandwich.jpg', description: 'دجاج مشوي بصوص BBQ الحار والغني بالنكهة.' },
-        { name: { en: 'Caesar Sandwich', ar: 'ساندويش سيزر' }, image: 'food/caesar-sandwich.jpg', description: 'صوص سيزر الكلاسيكي مع دجاج مشوي وخس مقرمش.' },
+        { name: { en: 'Turkey Cheese Sandwich', ar: 'ساندويش حبش بالجبن' }, price: '5,500 IQD', image: 'food/turkey-cheese-sandwich.jpg', description: 'ديك رومي مع جبن ذايب وخبز محمص. مثالي للوجبة السريعة.' },
+        { name: { en: 'Diet Sandwich', ar: 'ساندويش دايت' }, price: '6,000 IQD', image: 'food/diet-sandwich.jpg', description: 'ساندويش دايت مع دجاج مشوي، خضار طازج وصوص يوناني. خفيف ومشبع بدون ذنب.' },
+        { name: { en: 'BBQ Chicken Sandwich', ar: 'ساندويش دجاج برابكيو' }, price: '6,500 IQD', image: 'food/bbq-chicken-sandwich.jpg', description: 'دجاج مشوي بصوص BBQ الحار والغني بالنكهة.' },
+        { name: { en: 'Caesar Sandwich', ar: 'ساندويش سيزر' }, price: '6,500 IQD', image: 'food/caesar-sandwich.jpg', description: 'صوص سيزر الكلاسيكي مع دجاج مشوي وخس مقرمش.' },
       ]
     }
   ]
