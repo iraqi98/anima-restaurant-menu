@@ -1,517 +1,51 @@
 <!DOCTYPE html>
-<!-- النسخة الاصلية المعتمدة -->
+<!-- ANIMA Cafe - WhatsApp Fixed -->
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANIMA CAFÉ & PIZZERIA</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&family=Montserrat:wght@700;800&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cairo:wght@400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <script src="data_v2.js"></script>
-
-    <!-- Animated Video Background -->
+    
     <style>
-        .rising-emojis {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .rising-emojis video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.35;
-        }
-    </style>
-
-
-
-    <!-- Original styles -->
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes floatLogo {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-        }
-
-        @keyframes slideUpFade {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 188, 0, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(255, 188, 0, 0);
-            }
-
-            100% {
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 188, 0, 0);
-            }
-        }
-
-        body {
-            font-family: 'Roboto', 'Cairo', sans-serif;
-            background: #01164B;
-            color: #fff;
-            line-height: 1.6;
-            direction: ltr;
-            min-height: 100vh;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 75px 20px 75px;
-            text-align: center;
-            position: relative;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .logo {
-            max-width: 250px;
-            max-height: 180px;
-            width: auto;
-            height: auto;
-            border-radius: 25px;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
-            animation: fadeIn 1.2s ease-out, floatLogo 4s ease-in-out infinite 1.2s;
-        }
-
-        .menu-btn {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            padding: 20px 50px;
-            border-radius: 60px;
-            font-size: 1.6em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 50px;
-            position: relative;
-            overflow: hidden;
-            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both, pulseGlow 3s infinite 1.4s;
-        }
-
-        .menu-btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .top-navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 75px;
-            background: rgba(1, 22, 75, 0.95);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        /* Mobile Optimization: Remove heavy filters */
-        @media (max-width: 768px) {
-
-            .top-navbar,
-            .menu-btn,
-            .social-icon {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-
-            .top-navbar {
-                background: #01164B;
-            }
-
-            .menu-btn {
-                background: rgba(255, 255, 255, 0.15);
-            }
-
-            .social-icon {
-                background: rgba(255, 255, 255, 0.12);
-            }
-
-            #parallax-wrapper {
-                margin-top: 15vh !important;
-            }
-        }
-
-        .navbar-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .navbar-logo {
-            height: 45px;
-            object-fit: contain;
-            cursor: pointer;
-        }
-
-        .spacer {
-            flex-grow: 1;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .menu-button {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.85em;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 10px 18px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        /* Social Footer */
-        .social-footer {
-            margin-top: auto;
-            padding: 40px 20px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            color: #fff;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-icon:hover {
-            transform: translateY(-10px) scale(1.1);
-            background: rgba(255, 188, 0, 0.2);
-            border-color: #ffbc00;
-            box-shadow: 0 20px 50px rgba(255, 188, 0, 0.3);
-        }
-
-        .tiktok-original .tiktok-img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            border-radius: 8px;
-            filter: drop-shadow(0 4px 12px rgba(255, 0, 80, 0.4));
-            animation: tiktokGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes tiktokGlow {
-            from {
-                filter: drop-shadow(0 4px 12px rgba(255, 0, 80, 0.4));
-            }
-
-            to {
-                filter: drop-shadow(0 8px 20px rgba(255, 0, 80, 0.6));
-            }
-        }
-
-        .social-icon:hover .tiktok-img {
-            transform: rotate(360deg) scale(1.1);
-        }
-
-        /* Instagram Interactive */
-        .instagram-interactive i {
-            font-size: 2.2rem;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: instaGradient 3s ease infinite;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
-            filter: drop-shadow(0 4px 10px rgba(220, 39, 67, 0.3));
-        }
-
-        @keyframes instaGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .social-icon.instagram-interactive:hover i {
-            transform: scale(1.2) rotate(15deg);
-            filter: drop-shadow(0 8px 15px rgba(220, 39, 67, 0.6));
-        }
-
-        /* WhatsApp Icon */
-        .whatsapp-icon {
-            color: #25D366;
-        }
-
-        .whatsapp-icon:hover {
-            background: rgba(37, 211, 102, 0.2);
-            border-color: #25D366;
-            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.4);
-        }
-
-        /* Sparkle Effect */
-        .sparkle {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: #ffbc00;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px #ffbc00, 0 0 20px #ffbc00;
-            animation: sparkleAnim 0.8s ease-out forwards;
-            z-index: 9999;
-        }
-
-        @keyframes sparkleAnim {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translate(-50%, -80px) scale(1.5);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: translate(-50%, -120px) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* Cinematic Wipe Transition */
-        .circle-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #01164B;
-            z-index: 99999;
-            pointer-events: none;
-            clip-path: circle(0% at 50% 50%);
-            transition: clip-path 0.7s cubic-bezier(0.7, 0, 0.3, 1);
-        }
-
-        .circle-transition.active {
-            clip-path: circle(150% at 50% 50%);
-        }
-
-        #parallax-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            will-change: transform;
-            transition: transform 0.1s ease-out;
-            margin-top: 25vh;
-        }
-
-        #music-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            border-radius: 50%;
-            overflow: visible;
-        }
-
-        /* Vinyl Record Player Icon */
-        .record-player-icon {
-            width: 32px;
-            height: 32px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Vinyl disc */
-        .record-player-icon .vinyl {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 40%, #2a2a2a 0%, #1a1a1a 30%, #0a0a0a 70%, #1a1a1a 100%);
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        /* Vinyl grooves */
-        .record-player-icon .vinyl::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: repeating-radial-gradient(circle at center,
-                    transparent 0px,
-                    transparent 3px,
-                    rgba(80, 80, 80, 0.2) 3px,
-                    rgba(80, 80, 80, 0.2) 4px);
-        }
-
-        /* Center label */
-        .record-player-icon .vinyl::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 40%, #cc2366, #8a1840);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Tonearm */
-        .record-player-icon .tonearm {
-            position: absolute;
-            top: -2px;
-            right: -4px;
-            width: 3px;
-            height: 14px;
-            background: linear-gradient(90deg, #c0c0c0, #e8e8e8, #c0c0c0);
-            border-radius: 2px;
-            transform-origin: top center;
-            transform: rotate(25deg);
-            transition: transform 0.5s ease;
-        }
-
-        /* Tonearm base */
-        .record-player-icon .tonearm::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -2px;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 40%, #d4d4d4, #888);
-        }
-
-        /* Needle */
-        .record-player-icon .tonearm::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: -1px;
-            width: 5px;
-            height: 3px;
-            background: #666;
-            border-radius: 1px;
-        }
-
-        /* Spinning animation */
-        .record-player-icon.playing .vinyl {
-            animation: recordSpin 3s linear infinite;
-        }
-
-        .record-player-icon.playing .tonearm {
-            transform: rotate(15deg);
-        }
-
-        @keyframes recordSpin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        .rising-emojis { position: fixed; left: 0; bottom: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; overflow: hidden; }
+        .rising-emojis video { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        @keyframes fadeIn { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 0 0 rgba(255,188,0,0.4); } 70% { box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 0 15px rgba(255,188,0,0); } 100% { box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 0 0 rgba(255,188,0,0); } }
+        body { font-family: 'Roboto', 'Cairo', sans-serif; background: #01164B; color: #fff; line-height: 1.6; direction: ltr; min-height: 100vh; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 75px 20px 75px; text-align: center; position: relative; box-sizing: border-box; overflow: hidden; }
+        .logo { max-width: 250px; max-height: 180px; width: auto; height: auto; border-radius: 25px; margin-bottom: 30px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); animation: fadeIn 1.2s ease-out; }
+        .menu-btn { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.3); color: #fff; padding: 20px 50px; border-radius: 60px; font-size: 1.6em; font-weight: 700; cursor: pointer; transition: all 0.4s ease; text-decoration: none; display: inline-block; margin-bottom: 50px; position: relative; overflow: hidden; animation: slideUpFade 1s cubic-bezier(0.16,1,0.3,1) 0.4s both, pulseGlow 3s infinite 1.4s; }
+        .menu-btn:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: rgba(255,255,255,0.15); }
+        .top-navbar { position: fixed; top: 0; left: 0; width: 100%; height: 75px; background: rgba(1,22,75,0.95); z-index: 1000; display: flex; align-items: center; padding: 0 20px; }
+        @media (max-width: 768px) { .top-navbar, .menu-btn, .social-icon { backdrop-filter: none !important; } .top-navbar { background: #01164B; } .menu-btn { background: rgba(255,255,255,0.15); } .social-icon { background: rgba(255,255,255,0.12); } #parallax-wrapper { margin-top: 15vh !important; } }
+        .navbar-content { display: flex; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
+        .spacer { flex-grow: 1; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .menu-button { color: #ffffff; text-decoration: none; font-size: 0.85em; font-weight: 700; background: rgba(255,255,255,0.08); padding: 10px 18px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.2s ease; }
+        .social-footer { margin-top: auto; padding: 40px 20px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: slideUpFade 1s cubic-bezier(0.16,1,0.3,1) 0.8s both; }
+        .social-icon { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; font-size: 1.5rem; text-decoration: none; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .social-icon:hover { transform: translateY(-10px) scale(1.1); background: rgba(255,188,0,0.2); border-color: #ffbc00; box-shadow: 0 20px 50px rgba(255,188,0,0.3); }
+        .whatsapp-icon { color: #25D366; }
+        .whatsapp-icon:hover { background: rgba(37,211,102,0.2); border-color: #25D366; box-shadow: 0 20px 50px rgba(37,211,102,0.4); }
+        .instagram-interactive i { font-size: 2.2rem; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: instaGradient 3s ease infinite; filter: drop-shadow(0 4px 10px rgba(220,39,67,0.3)); }
+        @keyframes instaGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .social-icon.instagram-interactive:hover i { transform: scale(1.2) rotate(15deg); filter: drop-shadow(0 8px 15px rgba(220,39,67,0.6)); }
+        .tiktok-original .tiktok-img { width: 36px; height: 36px; object-fit: contain; border-radius: 8px; filter: drop-shadow(0 4px 12px rgba(255,0,80,0.4)); animation: tiktokGlow 2s ease-in-out infinite alternate; }
+        @keyframes tiktokGlow { from { filter: drop-shadow(0 4px 12px rgba(255,0,80,0.4)); } to { filter: drop-shadow(0 8px 20px rgba(255,0,80,0.6)); } }
+        .social-icon:hover .tiktok-img { transform: rotate(360deg) scale(1.1); }
+        .sparkle { position: fixed; width: 8px; height: 8px; background: #ffbc00; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #ffbc00, 0 0 20px #ffbc00; animation: sparkleAnim 0.8s ease-out forwards; z-index: 9999; }
+        @keyframes sparkleAnim { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 50% { transform: translate(-50%, -80px) scale(1.5); opacity: 0.8; } 100% { transform: translate(-50%, -120px) scale(0); opacity: 0; } }
+        .circle-transition { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #01164B; z-index: 99999; pointer-events: none; clip-path: circle(0% at 50% 50%); transition: clip-path 0.7s cubic-bezier(0.7,0,0.3,1); }
+        .circle-transition.active { clip-path: circle(150% at 50% 50%); }
+        #parallax-wrapper { display: flex; flex-direction: column; align-items: center; will-change: transform; transition: transform 0.1s ease-out; margin-top: 25vh; }
     </style>
 </head>
-
 <body>
-    <!-- Animated Video Background (Programmatically Trimmmed to 2s) -->
     <div class="rising-emojis" id="risingEmojis">
         <video id="bg-video" autoplay loop muted playsinline>
             <source src="background-video.mp4" type="video/mp4">
@@ -519,130 +53,38 @@
     </div>
     <header class="top-navbar">
         <div class="navbar-content">
-            <!-- Logo removed -->
             <div class="spacer"></div>
             <div class="nav-buttons">
                 <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
             </div>
         </div>
     </header>
-
     <div id="parallax-wrapper">
-        <a href="menu" class="menu-btn" id="main-menu-btn">View Menu</a>
+        <a href="menu.html" class="menu-btn" id="main-menu-btn">View Menu</a>
     </div>
-
     <footer class="social-footer">
         <a href="https://wa.me/9647890809000?text=مرحبا%20أود%20الطلب%20من%20ANIMA" class="social-icon whatsapp-icon" target="_blank" title="WhatsApp - ANIMA">
             <i class="fab fa-whatsapp"></i>
         </a>
-
-        <a href="https://www.instagram.com/anima.iqq?igsh=bGExN2oycjc3aTl4" class="social-icon instagram-interactive"
-            target="_blank" title="Instagram - ANIMA">
+        <a href="https://www.instagram.com/anima.iqq?igsh=bGExN2oycjc3aTl4" class="social-icon instagram-interactive" target="_blank" title="Instagram - ANIMA">
             <i class="fab fa-instagram"></i>
         </a>
-
-        <a href="https://www.tiktok.com/@anima.iqq?_r=1&_t=ZS-95Yv81DVh0n" class="social-icon tiktok-original"
-            target="_blank" title="TikTok - ANIMA">
+        <a href="https://www.tiktok.com/@anima.iqq?_r=1&_t=ZS-95Yv81DVh0n" class="social-icon tiktok-original" target="_blank" title="TikTok - ANIMA">
             <img src="tiktok-icon.png" alt="TikTok" class="tiktok-img" loading="lazy">
         </a>
     </footer>
-
     <script>
         let currentLang = localStorage.getItem('anima_lang') || 'en';
-
-        // Language functions
-        function applyLanguage() {
-            const isAr = (currentLang === 'ar');
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR';
-
-            if (window.ANIMA_UI) {
-                const mainMenuBtn = document.getElementById('main-menu-btn');
-                if (mainMenuBtn) {
-                    mainMenuBtn.textContent = window.ANIMA_UI[currentLang].viewMenu || 'View Menu';
-                }
-            }
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'ar' : 'en';
-            localStorage.setItem('anima_lang', currentLang);
-            applyLanguage();
-        }
-
-        window.addEventListener('storage', (e) => {
-            if (e.key === 'anima_lang' && e.newValue) {
-                currentLang = e.newValue;
-                applyLanguage();
-            }
-        });
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyLanguage);
-        } else {
-            applyLanguage();
-        }
-
-        // Parallax
+        function applyLanguage() { const isAr = (currentLang === 'ar'); document.documentElement.lang = currentLang; document.documentElement.dir = isAr ? 'rtl' : 'ltr'; document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR'; if (window.ANIMA_UI) { const mainMenuBtn = document.getElementById('main-menu-btn'); if (mainMenuBtn) mainMenuBtn.textContent = window.ANIMA_UI[currentLang].viewMenu || 'View Menu'; } }
+        function toggleLanguage() { currentLang = (currentLang === 'en') ? 'ar' : 'en'; localStorage.setItem('anima_lang', currentLang); applyLanguage(); }
+        window.addEventListener('storage', (e) => { if (e.key === 'anima_lang' && e.newValue) { currentLang = e.newValue; applyLanguage(); } });
+        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', applyLanguage); } else { applyLanguage(); }
         const parallaxWrapper = document.getElementById('parallax-wrapper');
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth < 768) return; // Disable parallax on mobile
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            parallaxWrapper.style.transform = `translate(${x}px, ${y}px)`;
-        });
-
-        // Sparkle on click
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON' || e.target.closest('a')) return;
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = e.clientX + 'px';
-            sparkle.style.top = e.clientY + 'px';
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 800);
-        });
-
-        // Cinematic transition
-        document.getElementById('main-menu-btn').addEventListener('click', function (e) {
-            e.preventDefault();
-            const rect = this.getBoundingClientRect();
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
-
-            try {
-                localStorage.setItem('anima_music_autoplay_request', 'true');
-            } catch (err) {
-                console.warn('Unable to persist autoplay request', err);
-            }
-
-            const transition = document.createElement('div');
-            transition.className = 'circle-transition';
-            transition.style.clipPath = `circle(0% at ${x}px ${y}px)`;
-            document.body.appendChild(transition);
-
-            transition.offsetHeight; // Force reflow
-
-            transition.classList.add('active');
-            transition.style.clipPath = `circle(150% at ${x}px ${y}px)`;
-
-            setTimeout(() => {
-                window.location.href = 'menu';
-            }, 600);
-        });
-
-        // Loop video every 2 seconds
+        document.addEventListener('mousemove', (e) => { if (window.innerWidth < 768) return; const x = (e.clientX / window.innerWidth - 0.5) * 20; const y = (e.clientY / window.innerHeight - 0.5) * 20; parallaxWrapper.style.transform = `translate(${x}px, ${y}px)`; });
+        document.addEventListener('click', (e) => { if (e.target.tagName === 'BUTTON' || e.target.closest('a')) return; const sparkle = document.createElement('div'); sparkle.className = 'sparkle'; sparkle.style.left = e.clientX + 'px'; sparkle.style.top = e.clientY + 'px'; document.body.appendChild(sparkle); setTimeout(() => sparkle.remove(), 800); });
+        document.getElementById('main-menu-btn').addEventListener('click', function (e) { e.preventDefault(); const rect = this.getBoundingClientRect(); const x = rect.left + rect.width / 2; const y = rect.top + rect.height / 2; try { localStorage.setItem('anima_music_autoplay_request', 'true'); } catch (err) { console.warn('Unable to persist autoplay request', err); } const transition = document.createElement('div'); transition.className = 'circle-transition'; transition.style.clipPath = `circle(0% at ${x}px ${y}px)`; document.body.appendChild(transition); transition.offsetHeight; transition.classList.add('active'); transition.style.clipPath = `circle(150% at ${x}px ${y}px)`; setTimeout(() => { window.location.href = 'menu.html'; }, 600); });
         const bgVideo = document.getElementById('bg-video');
-        if (bgVideo) {
-            bgVideo.addEventListener('timeupdate', function () {
-                if (this.currentTime >= 2) {
-                    this.currentTime = 0;
-                }
-            });
-        }
+        if (bgVideo) { bgVideo.addEventListener('timeupdate', function () { if (this.currentTime >= 2) { this.currentTime = 0; } }); }
     </script>
-
 </body>
-
 </html>
