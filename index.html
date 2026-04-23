@@ -58,6 +58,9 @@
         .social-icon.instagram-interactive:hover i { transform: scale(1.2) rotate(15deg); filter: drop-shadow(0 8px 15px rgba(220,39,67,0.6)); }
         .sparkle { position: fixed; width: 8px; height: 8px; background: #ffbc00; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #ffbc00, 0 0 20px #ffbc00; animation: sparkleAnim 0.8s ease-out forwards; z-index: 9999; }
         @keyframes sparkleAnim { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 50% { transform: translate(-50%, -80px) scale(1.5); opacity: 0.8; } 100% { transform: translate(-50%, -120px) scale(0); opacity: 0; } }
+        .whatsapp-btn i { font-size: 2.2rem; color: #25D366; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1); filter: drop-shadow(0 4px 10px rgba(37, 211, 102, 0.3)); }
+        .social-icon.whatsapp-btn:hover { background: rgba(37, 211, 102, 0.2); border-color: #25D366; box-shadow: 0 20px 50px rgba(37, 211, 102, 0.3); }
+        .social-icon.whatsapp-btn:hover i { transform: scale(1.2) rotate(-10deg); filter: drop-shadow(0 8px 15px rgba(37, 211, 102, 0.6)); }
         .circle-transition { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #01164B; z-index: 99999; pointer-events: none; clip-path: circle(0% at 50% 50%); transition: clip-path 0.7s cubic-bezier(0.7,0,0.3,1); }
         .circle-transition.active { clip-path: circle(150% at 50% 50%); }
         #parallax-wrapper { display: flex; flex-direction: column; align-items: center; will-change: transform; transition: transform 0.1s ease-out; margin-top: 25vh; }
@@ -96,6 +99,9 @@
         </a>
         <a href="https://www.tiktok.com/@anima.iqq?_r=1&_t=ZS-95Yv81DVh0n" class="social-icon tiktok-original" target="_blank" title="TikTok - ANIMA">
             <img src="tiktok-icon.png" alt="TikTok" class="tiktok-img" loading="lazy">
+        </a>
+        <a href="https://wa.me/9647890809000" class="social-icon whatsapp-btn" target="_blank" title="WhatsApp - ANIMA">
+            <i class="fab fa-whatsapp"></i>
         </a>
     </footer>
     <script>
