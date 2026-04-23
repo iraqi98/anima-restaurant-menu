@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- ANIMA Cafe - Complete Fixed Version -->
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +9,7 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <script src="data_v2.js"></script>
-
-    <!-- Animated Video Background -->
+    
     <style>
         .rising-emojis {
             position: fixed;
@@ -86,7 +84,6 @@
         .social-icon.whatsapp-interactive:hover { background: rgba(37,211,102,0.15); border-color: #25D366; box-shadow: 0 20px 50px rgba(37,211,102,0.3); }
     </style>
 </head>
-
 <body>
     <div class="rising-emojis" id="risingEmojis">
         <video id="bg-video" autoplay loop muted playsinline>
@@ -101,11 +98,9 @@
             </div>
         </div>
     </header>
-
     <div id="parallax-wrapper">
         <a href="menu.html" class="menu-btn" id="main-menu-btn">View Menu</a>
     </div>
-
     <footer class="social-footer">
         <a href="https://www.instagram.com/anima.iqq?igsh=bGExN2oycjc3aTl4" class="social-icon instagram-interactive" target="_blank" title="Instagram - ANIMA">
             <i class="fab fa-instagram"></i>
@@ -117,7 +112,6 @@ href="https://wa.me/9647890809000?text=%F0%9F%91%8B%20مرحبا%20أود%20ال
             <i class="fab fa-whatsapp"></i>
         </a>
     </footer>
-
     <script>
         let currentLang = localStorage.getItem('anima_lang') || 'en';
         function applyLanguage() { const isAr = (currentLang === 'ar'); document.documentElement.lang = currentLang; document.documentElement.dir = isAr ? 'rtl' : 'ltr'; document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR'; if (window.ANIMA_UI) { const mainMenuBtn = document.getElementById('main-menu-btn'); if (mainMenuBtn) mainMenuBtn.textContent = window.ANIMA_UI[currentLang].viewMenu || 'View Menu'; } }
