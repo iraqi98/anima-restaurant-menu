@@ -50,17 +50,17 @@
         .social-footer { margin-top: auto; padding: 40px 20px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: slideUpFade 1s cubic-bezier(0.16,1,0.3,1) 0.8s both; }
         .social-icon { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; font-size: 1.5rem; text-decoration: none; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .social-icon:hover { transform: translateY(-10px) scale(1.1); background: rgba(255,188,0,0.2); border-color: #ffbc00; box-shadow: 0 20px 50px rgba(255,188,0,0.3); }
-        .tiktok-original .tiktok-img { width: 36px; height: 36px; object-fit: contain; border-radius: 8px; filter: drop-shadow(0 4px 12px rgba(255,0,80,0.4)); animation: tiktokGlow 2s ease-in-out infinite alternate; }
-        @keyframes tiktokGlow { from { filter: drop-shadow(0 4px 12px rgba(255,0,80,0.4)); } to { filter: drop-shadow(0 8px 20px rgba(255,0,80,0.6)); } }
+        .tiktok-original .tiktok-img { width: 36px; height: 36px; object-fit: contain; border-radius: 8px; filter: brightness(0); animation: tiktokGlow 2s ease-in-out infinite alternate; }
+        @keyframes tiktokGlow { from { filter: brightness(0) drop-shadow(0 4px 12px rgba(0,0,0,0.4)); } to { filter: brightness(0) drop-shadow(0 8px 20px rgba(0,0,0,0.6)); } }
         .social-icon:hover .tiktok-img { transform: rotate(360deg) scale(1.1); }
-        .instagram-interactive i { font-size: 2.2rem; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: instaGradient 3s ease infinite; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1); filter: drop-shadow(0 4px 10px rgba(220,39,67,0.3)); }
+        .instagram-interactive i { font-size: 2.2rem; color: #000; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1); filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
         @keyframes instaGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .social-icon.instagram-interactive:hover i { transform: scale(1.2) rotate(15deg); filter: drop-shadow(0 8px 15px rgba(220,39,67,0.6)); }
+        .social-icon.instagram-interactive:hover i { transform: scale(1.2) rotate(15deg); filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6)); }
         .sparkle { position: fixed; width: 8px; height: 8px; background: #ffbc00; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #ffbc00, 0 0 20px #ffbc00; animation: sparkleAnim 0.8s ease-out forwards; z-index: 9999; }
         @keyframes sparkleAnim { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 50% { transform: translate(-50%, -80px) scale(1.5); opacity: 0.8; } 100% { transform: translate(-50%, -120px) scale(0); opacity: 0; } }
-        .whatsapp-btn i { font-size: 2.2rem; color: #25D366; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1); filter: drop-shadow(0 4px 10px rgba(37, 211, 102, 0.3)); }
-        .social-icon.whatsapp-btn:hover { background: rgba(37, 211, 102, 0.2); border-color: #25D366; box-shadow: 0 20px 50px rgba(37, 211, 102, 0.3); }
-        .social-icon.whatsapp-btn:hover i { transform: scale(1.2) rotate(-10deg); filter: drop-shadow(0 8px 15px rgba(37, 211, 102, 0.6)); }
+        .whatsapp-btn i { font-size: 2.2rem; color: #000; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1); filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+        .social-icon.whatsapp-btn:hover { background: rgba(0, 0, 0, 0.2); border-color: #000; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); }
+        .social-icon.whatsapp-btn:hover i { transform: scale(1.2) rotate(-10deg); filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.6)); }
         .circle-transition { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #01164B; z-index: 99999; pointer-events: none; clip-path: circle(0% at 50% 50%); transition: clip-path 0.7s cubic-bezier(0.7,0,0.3,1); }
         .circle-transition.active { clip-path: circle(150% at 50% 50%); }
         #parallax-wrapper { display: flex; flex-direction: column; align-items: center; will-change: transform; transition: transform 0.1s ease-out; margin-top: 25vh; }
@@ -102,9 +102,9 @@
         }
 
         .event-badge {
-            background: rgba(255, 188, 0, 0.1);
-            border: 1px solid rgba(255, 188, 0, 0.2);
-            color: #ffbc00;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
             padding: 2px 10px;
             border-radius: 8px;
             font-size: 0.65rem;
@@ -130,7 +130,7 @@
             font-family: 'Montserrat', 'Cairo', sans-serif;
             font-size: 0.9rem;
             font-weight: 600;
-            color: #ffbc00;
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
