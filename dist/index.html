@@ -56,10 +56,6 @@
         .instagram-interactive i { font-size: 2.2rem; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: instaGradient 3s ease infinite; transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1); filter: drop-shadow(0 4px 10px rgba(220,39,67,0.3)); }
         @keyframes instaGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .social-icon.instagram-interactive:hover i { transform: scale(1.2) rotate(15deg); filter: drop-shadow(0 8px 15px rgba(220,39,67,0.6)); }
-        .whatsapp-interactive i { font-size: 2rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 50%, #25D366 100%); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: whatsappGradient 2s ease infinite; filter: drop-shadow(0 4px 12px rgba(37,211,102,0.4)); }
-        @keyframes whatsappGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .social-icon.whatsapp-interactive:hover i { transform: scale(1.15) rotate(360deg); filter: drop-shadow(0 8px 20px rgba(37,211,102,0.6)); }
-        .social-icon.whatsapp-interactive:hover { background: rgba(37,211,102,0.15); border-color: #25D366; box-shadow: 0 20px 50px rgba(37,211,102,0.3); }
         .sparkle { position: fixed; width: 8px; height: 8px; background: #ffbc00; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); box-shadow: 0 0 10px #ffbc00, 0 0 20px #ffbc00; animation: sparkleAnim 0.8s ease-out forwards; z-index: 9999; }
         @keyframes sparkleAnim { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 50% { transform: translate(-50%, -80px) scale(1.5); opacity: 0.8; } 100% { transform: translate(-50%, -120px) scale(0); opacity: 0; } }
         .circle-transition { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #01164B; z-index: 99999; pointer-events: none; clip-path: circle(0% at 50% 50%); transition: clip-path 0.7s cubic-bezier(0.7,0,0.3,1); }
@@ -76,12 +72,6 @@
         .record-player-icon.playing .vinyl { animation: recordSpin 3s linear infinite; }
         .record-player-icon.playing .tonearm { transform: rotate(15deg); }
         @keyframes recordSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* WhatsApp */
-        .whatsapp-interactive i { font-size: 2rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 50%, #25D366 100%); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: whatsappGradient 2s ease infinite; filter: drop-shadow(0 4px 12px rgba(37,211,102,0.4)); }
-        @keyframes whatsappGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .social-icon.whatsapp-interactive:hover i { transform: scale(1.15) rotate(360deg); filter: drop-shadow(0 8px 20px rgba(37,211,102,0.6)); }
-        .social-icon.whatsapp-interactive:hover { background: rgba(37,211,102,0.15); border-color: #25D366; box-shadow: 0 20px 50px rgba(37,211,102,0.3); }
     </style>
 </head>
 <body>
@@ -96,7 +86,6 @@
             <div class="nav-buttons">
                 <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
             </div>
-        </div>
     </header>
     <div id="parallax-wrapper">
         <a href="menu.html" class="menu-btn" id="main-menu-btn">View Menu</a>
@@ -107,9 +96,6 @@
         </a>
         <a href="https://www.tiktok.com/@anima.iqq?_r=1&_t=ZS-95Yv81DVh0n" class="social-icon tiktok-original" target="_blank" title="TikTok - ANIMA">
             <img src="/assets/tiktok-icon-B0JLQ46z.png" alt="TikTok" class="tiktok-img" loading="lazy">
-        </a>
-        <a href="https://wa.me/9647890809000?text=مرحبا%20أود%20الطلب%20من%20ANIMA" class="social-icon whatsapp-icon whatsapp-interactive" target="_blank" title="WhatsApp - ANIMA">
-            <i class="fab fa-whatsapp"></i>
         </a>
     </footer>
     <script>
