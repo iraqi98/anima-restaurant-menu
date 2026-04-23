@@ -75,6 +75,75 @@
         .record-player-icon.playing .vinyl { animation: recordSpin 3s linear infinite; }
         .record-player-icon.playing .tonearm { transform: rotate(15deg); }
         @keyframes recordSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Event Card Styles */
+        .event-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 35px 25px;
+            margin-bottom: 40px;
+            max-width: 450px;
+            width: 95%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.05);
+            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        .event-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 188, 0, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .event-badge {
+            background: #ffbc00;
+            color: #01164B;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 20px rgba(255, 188, 0, 0.3);
+        }
+
+        .event-title {
+            font-family: 'Montserrat', 'Cairo', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .event-date {
+            font-family: 'Montserrat', 'Cairo', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffbc00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .event-date i { font-size: 1.1rem; }
+
+        @media (max-width: 480px) {
+            .event-title { font-size: 1.8rem; }
+            .event-card { padding: 25px 20px; }
+            #parallax-wrapper { margin-top: 15vh !important; }
+        }
     </style>
 </head>
 <body>
@@ -89,8 +158,17 @@
             <div class="nav-buttons">
                 <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
             </div>
+        </div>
     </header>
     <div id="parallax-wrapper">
+        <div class="event-card" id="event-card">
+            <div class="event-badge" id="event-badge">Upcoming Event</div>
+            <h2 class="event-title" id="event-title">Grand Opening</h2>
+            <div class="event-date">
+                <i class="far fa-calendar-alt"></i>
+                <span id="event-date-text">May 1st, 2026</span>
+            </div>
+        </div>
         <a href="menu.html" class="menu-btn" id="main-menu-btn">View Menu</a>
     </div>
     <footer class="social-footer">
@@ -106,12 +184,55 @@
     </footer>
     <script>
         let currentLang = localStorage.getItem('anima_lang') || 'en';
-        function applyLanguage() { const isAr = (currentLang === 'ar'); document.documentElement.lang = currentLang; document.documentElement.dir = isAr ? 'rtl' : 'ltr'; document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR'; if (window.ANIMA_UI) { const mainMenuBtn = document.getElementById('main-menu-btn'); if (mainMenuBtn) mainMenuBtn.textContent = window.ANIMA_UI[currentLang].viewMenu || 'View Menu'; } }
+        const translations = {
+            en: {
+                viewMenu: "View Menu",
+                eventBadge: "Upcoming Event",
+                eventTitle: "Grand Opening",
+                eventDate: "May 1st, 2026"
+            },
+            ar: {
+                viewMenu: "عرض المنيو",
+                eventBadge: "حدث قادم",
+                eventTitle: "الافتتاح الكبير",
+                eventDate: "1 مايو 2026"
+            }
+        };
+
+        function applyLanguage() { 
+            const isAr = (currentLang === 'ar'); 
+            document.documentElement.lang = currentLang; 
+            document.documentElement.dir = isAr ? 'rtl' : 'ltr'; 
+            document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'AR'; 
+            
+            const t = translations[currentLang];
+            const mainMenuBtn = document.getElementById('main-menu-btn');
+            if (mainMenuBtn) mainMenuBtn.textContent = t.viewMenu;
+            
+            document.getElementById('event-badge').textContent = t.eventBadge;
+            document.getElementById('event-title').textContent = t.eventTitle;
+            document.getElementById('event-date-text').textContent = t.eventDate;
+        }
         function toggleLanguage() { currentLang = (currentLang === 'en') ? 'ar' : 'en'; localStorage.setItem('anima_lang', currentLang); applyLanguage(); }
         window.addEventListener('storage', (e) => { if (e.key === 'anima_lang' && e.newValue) { currentLang = e.newValue; applyLanguage(); } });
         if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', applyLanguage); } else { applyLanguage(); }
         const parallaxWrapper = document.getElementById('parallax-wrapper');
-        document.addEventListener('mousemove', (e) => { if (window.innerWidth < 768) return; const x = (e.clientX / window.innerWidth - 0.5) * 20; const y = (e.clientY / window.innerHeight - 0.5) * 20; parallaxWrapper.style.transform = `translate(${x}px, ${y}px)`; });
+        const eventCard = document.getElementById('event-card');
+        
+        document.addEventListener('mousemove', (e) => { 
+            if (window.innerWidth < 768) return; 
+            const x = (e.clientX / window.innerWidth - 0.5) * 20; 
+            const y = (e.clientY / window.innerHeight - 0.5) * 20; 
+            parallaxWrapper.style.transform = `translate(${x}px, ${y}px)`; 
+            
+            if (eventCard) {
+                const rect = eventCard.getBoundingClientRect();
+                const cardX = ((e.clientX - rect.left) / rect.width) * 100;
+                const cardY = ((e.clientY - rect.top) / rect.height) * 100;
+                eventCard.style.setProperty('--x', `${cardX}%`);
+                eventCard.style.setProperty('--y', `${cardY}%`);
+            }
+        });
         document.addEventListener('click', (e) => { if (e.target.tagName === 'BUTTON' || e.target.closest('a')) return; const sparkle = document.createElement('div'); sparkle.className = 'sparkle'; sparkle.style.left = e.clientX + 'px'; sparkle.style.top = e.clientY + 'px'; document.body.appendChild(sparkle); setTimeout(() => sparkle.remove(), 800); });
         document.getElementById('main-menu-btn').addEventListener('click', function (e) { e.preventDefault(); const rect = this.getBoundingClientRect(); const x = rect.left + rect.width / 2; const y = rect.top + rect.height / 2; try { localStorage.setItem('anima_music_autoplay_request', 'true'); } catch (err) { console.warn('Unable to persist autoplay request', err); } const transition = document.createElement('div'); transition.className = 'circle-transition'; transition.style.clipPath = `circle(0% at ${x}px ${y}px)`; document.body.appendChild(transition); transition.offsetHeight; transition.classList.add('active'); transition.style.clipPath = `circle(150% at ${x}px ${y}px)`; setTimeout(() => { window.location.href = 'menu.html'; }, 600); });
         const bgVideo = document.getElementById('bg-video');
