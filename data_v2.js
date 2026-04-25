@@ -143,6 +143,14 @@ const ANIMA_DATA = {
         { name: { en: 'BBQ Chicken Sandwich', ar: 'ساندويش دجاج برابكيو' }, price: '6,500 IQD', image: 'food/bbq-chicken-sandwich.jpg', description: 'دجاج مشوي بصوص BBQ الحار والغني بالنكهة.' },
         { name: { en: 'Caesar Sandwich', ar: 'ساندويش سيزر' }, price: '6,500 IQD', image: 'food/caesar-sandwich.jpg', description: 'صوص سيزر الكلاسيكي مع دجاج مشوي وخس مقرمش.' },
       ]
+    },
+    {
+      id: 'breakfast',
+      title: { en: 'Breakfast', ar: 'الإفطار' },
+      items: [
+        { name: { en: 'Set Menu for Two', ar: 'سيت منيو لشخصين' }, price: '19,000 IQD', description: 'تشكيلة كاملة من القيمر، العسل، المربى، الأجبان، والبيض، تكفي لشخصين.', image: 'food/سيت منيو فطور .jpg' },
+        { name: { en: 'Breakfast for One', ar: 'فطور لشخص واحد' }, price: '11,000 IQD', description: 'وجبة متكاملة لشخص واحد تحتوي على الأصناف الأساسية للفطور العراقي.', image: 'food/سيت منيو فطور .jpg' },
+      ]
     }
   ]
 };
