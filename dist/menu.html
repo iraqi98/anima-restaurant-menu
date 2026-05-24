@@ -691,7 +691,7 @@ filter: brightness(0.85) contrast(1.2); /* Lighter gray tint */
             <button id="music-btn" class="menu-button" onclick="toggleMusic()" title="Play Ambience">
                 <i class="fas fa-music"></i>
             </button>
-            <a href="index.html" class="menu-button" id="home-btn">Home</a>
+            <a href="./" class="menu-button" id="home-btn">Home</a>
             <button id="lang-btn" class="menu-button" onclick="toggleLanguage()">AR</button>
         </div>
     </header>
@@ -731,6 +731,12 @@ filter: brightness(0.85) contrast(1.2); /* Lighter gray tint */
     </div>
 
     <script>
+        // Clean URL Logic
+        if (window.location.pathname.endsWith('.html')) {
+            const cleanUrl = window.location.pathname.replace('.html', '');
+            window.history.replaceState({}, '', cleanUrl);
+        }
+
         let currentLang = localStorage.getItem('anima_lang') || 'en';
 
         function applyLanguage() {
@@ -853,7 +859,7 @@ filter: brightness(0.85) contrast(1.2); /* Lighter gray tint */
                     container.appendChild(foodDiv);
                 }
 
-                const fullWidthCategories = ['coffee-drinks', 'pizza'];
+                const fullWidthCategories = ['coffee-drinks', 'pizza', 'breakfast'];
                 const card = document.createElement('div');
                 card.className = 'category-card' + (fullWidthCategories.includes(category.id) ? ' full-width' : '');
                 card.id = 'card-' + category.id;
