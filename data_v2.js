@@ -148,7 +148,7 @@ const ANIMA_DATA = {
       id: 'breakfast',
       title: { en: 'Breakfast', ar: 'الإفطار' },
       items: [
-        { name: { en: 'Set Menu for Two', ar: 'سيت منيو لشخصين' }, price: '19,000 IQD', description: 'تشكيلة كاملة من القيمر، العسل، المربى، الأجبان، والبيض، تكفي لشخصين.', image: 'food/سيت منيو فطور .jpg' },
+        { name: { en: 'Set Menu for Two', ar: 'سيت منيو لشخصين' }, price: '19,000 IQD', description: 'تشكيلة كاملة من العسل، المربى، الأجبان، والبيض، تكفي لشخصين.', image: 'food/سيت منيو فطور .jpg' },
         { name: { en: 'Breakfast for One', ar: 'فطور لشخص واحد' }, price: '11,000 IQD', description: 'وجبة متكاملة لشخص واحد تحتوي على الأصناف الأساسية للفطور العراقي.', image: 'food/سيت منيو فطور .jpg' },
       ]
     }
